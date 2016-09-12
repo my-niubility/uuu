@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlebank.dao.MCustAddAduitDao" >
+  <resultMap id="BaseResultMap" type="com.zlebank.model.MCustAddAduit" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CUST_ID" property="custId" jdbcType="VARCHAR" />
+    <result column="PASSED" property="passed" jdbcType="DECIMAL" />
+    <result column="AUDIT_USER_ID" property="auditUserId" jdbcType="VARCHAR" />
+    <result column="IS_MODIFY" property="isModify" jdbcType="DECIMAL" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.zlebank.model.MCustAddAduit" extends="BaseResultMap" >
+    <result column="NEWOBJECT" property="newobject" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CUST_ID, PASSED, AUDIT_USER_ID, IS_MODIFY, DESCRIPTION, CREATED_TIME
+  </sql>
+  <sql id="Blob_Column_List" >
+    NEWOBJECT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from T_M_CUST_ADD_AUDIT
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_M_CUST_ADD_AUDIT
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zlebank.model.MCustAddAduit" >
+    insert into T_M_CUST_ADD_AUDIT (ID, CUST_ID, PASSED, 
+      AUDIT_USER_ID, IS_MODIFY, DESCRIPTION, 
+      CREATED_TIME, NEWOBJECT)
+    values (#{id,jdbcType=VARCHAR}, #{custId,jdbcType=VARCHAR}, #{passed,jdbcType=DECIMAL}, 
+      #{auditUserId,jdbcType=VARCHAR}, #{isModify,jdbcType=DECIMAL}, #{description,jdbcType=VARCHAR}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{newobject,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zlebank.model.MCustAddAduit" >
+    insert into T_M_CUST_ADD_AUDIT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="custId != null" >
+        CUST_ID,
+      </if>
+      <if test="passed != null" >
+        PASSED,
+      </if>
+      <if test="auditUserId != null" >
+        AUDIT_USER_ID,
+      </if>
+      <if test="isModify != null" >
+        IS_MODIFY,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="newobject != null" >
+        NEWOBJECT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null" >
+        #{custId,jdbcType=VARCHAR},
+      </if>
+      <if test="passed != null" >
+        #{passed,jdbcType=DECIMAL},
+      </if>
+      <if test="auditUserId != null" >
+        #{auditUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="isModify != null" >
+        #{isModify,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newobject != null" >
+        #{newobject,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.MCustAddAduit" >
+    update T_M_CUST_ADD_AUDIT
+    <set >
+      <if test="custId != null" >
+        CUST_ID = #{custId,jdbcType=VARCHAR},
+      </if>
+      <if test="passed != null" >
+        PASSED = #{passed,jdbcType=DECIMAL},
+      </if>
+      <if test="auditUserId != null" >
+        AUDIT_USER_ID = #{auditUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="isModify != null" >
+        IS_MODIFY = #{isModify,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newobject != null" >
+        NEWOBJECT = #{newobject,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zlebank.model.MCustAddAduit" >
+    update T_M_CUST_ADD_AUDIT
+    set CUST_ID = #{custId,jdbcType=VARCHAR},
+      PASSED = #{passed,jdbcType=DECIMAL},
+      AUDIT_USER_ID = #{auditUserId,jdbcType=VARCHAR},
+      IS_MODIFY = #{isModify,jdbcType=DECIMAL},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      NEWOBJECT = #{newobject,jdbcType=LONGVARBINARY}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.MCustAddAduit" >
+    update T_M_CUST_ADD_AUDIT
+    set CUST_ID = #{custId,jdbcType=VARCHAR},
+      PASSED = #{passed,jdbcType=DECIMAL},
+      AUDIT_USER_ID = #{auditUserId,jdbcType=VARCHAR},
+      IS_MODIFY = #{isModify,jdbcType=DECIMAL},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

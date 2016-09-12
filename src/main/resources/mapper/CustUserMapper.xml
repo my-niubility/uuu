@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlebank.dao.CustUserDao" >
+  <resultMap id="BaseResultMap" type="com.zlebank.model.CustUser" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="LOGIN_NAME" property="loginName" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="EMAIL_ACTIVATE_CODE" property="emailActivateCode" jdbcType="VARCHAR" />
+    <result column="ENABLED" property="enabled" jdbcType="DECIMAL" />
+    <result column="PERIOD_START" property="periodStart" jdbcType="TIMESTAMP" />
+    <result column="PERIOD_END" property="periodEnd" jdbcType="TIMESTAMP" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="LOGIN_DATE" property="loginDate" jdbcType="TIMESTAMP" />
+    <result column="CUST_ID" property="custId" jdbcType="VARCHAR" />
+    <result column="CUST_TYPE" property="custType" jdbcType="VARCHAR" />
+    <result column="LAST_UPDATE_PASSWORD_TIME" property="lastUpdatePasswordTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_LOGIN_LOCK_TIME" property="lastLoginLockTime" jdbcType="TIMESTAMP" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="REG_CHAN_CODE" property="regChanCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, LOGIN_NAME, PASSWORD, MOBILE, EMAIL, EMAIL_ACTIVATE_CODE, ENABLED, PERIOD_START, 
+    PERIOD_END, CREATE_DATE,LOGIN_DATE, CUST_ID, CUST_TYPE, LAST_UPDATE_PASSWORD_TIME, LAST_LOGIN_LOCK_TIME, 
+    DESCRIPTION,REG_CHAN_CODE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_CUST_USER
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByUserName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_CUST_USER
+    where LOGIN_NAME = #{userName,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_CUST_USER
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zlebank.model.CustUser" >
+    insert into T_CUST_USER (ID, LOGIN_NAME, PASSWORD, 
+      MOBILE, EMAIL, EMAIL_ACTIVATE_CODE, 
+      ENABLED, PERIOD_START, PERIOD_END, 
+      CREATE_DATE,LOGIN_DATE, CUST_ID, CUST_TYPE, 
+      LAST_UPDATE_PASSWORD_TIME, LAST_LOGIN_LOCK_TIME, 
+      DESCRIPTION,REG_CHAN_CODE)
+    values (#{id,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{emailActivateCode,jdbcType=VARCHAR}, 
+      #{enabled,jdbcType=DECIMAL}, #{periodStart,jdbcType=TIMESTAMP}, #{periodEnd,jdbcType=TIMESTAMP}, 
+      #{createDate,jdbcType=TIMESTAMP},#{loginDate,jdbcType=TIMESTAMP}, #{custId,jdbcType=VARCHAR}, #{custType,jdbcType=VARCHAR}, 
+      #{lastUpdatePasswordTime,jdbcType=TIMESTAMP}, #{lastLoginLockTime,jdbcType=TIMESTAMP}, 
+      #{description,jdbcType=VARCHAR}, #{regChanCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zlebank.model.CustUser" >
+    insert into T_CUST_USER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="loginName != null" >
+        LOGIN_NAME,
+      </if>
+      <if test="password != null" >
+        PASSWORD,
+      </if>
+      <if test="mobile != null" >
+        MOBILE,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="emailActivateCode != null" >
+        EMAIL_ACTIVATE_CODE,
+      </if>
+      <if test="enabled != null" >
+        ENABLED,
+      </if>
+      <if test="periodStart != null" >
+        PERIOD_START,
+      </if>
+      <if test="periodEnd != null" >
+        PERIOD_END,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+       <if test="loginDate != null" >
+        LOGIN_DATE,
+      </if>
+      <if test="custId != null" >
+        CUST_ID,
+      </if>
+      <if test="custType != null" >
+        CUST_TYPE,
+      </if>
+      <if test="lastUpdatePasswordTime != null" >
+        LAST_UPDATE_PASSWORD_TIME,
+      </if>
+      <if test="lastLoginLockTime != null" >
+        LAST_LOGIN_LOCK_TIME,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+      <if test="regChanCode != null" >
+        REG_CHAN_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="emailActivateCode != null" >
+        #{emailActivateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null" >
+        #{enabled,jdbcType=DECIMAL},
+      </if>
+      <if test="periodStart != null" >
+        #{periodStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="periodEnd != null" >
+        #{periodEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginDate != null" >
+        #{loginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="custId != null" >
+        #{custId,jdbcType=VARCHAR},
+      </if>
+      <if test="custType != null" >
+        #{custType,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatePasswordTime != null" >
+        #{lastUpdatePasswordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginLockTime != null" >
+        #{lastLoginLockTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="regChanCode != null" >
+        #{regChanCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.CustUser" >
+    update T_CUST_USER
+    <set >
+      <if test="loginName != null" >
+        LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        MOBILE = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="emailActivateCode != null" >
+        EMAIL_ACTIVATE_CODE = #{emailActivateCode,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null" >
+        ENABLED = #{enabled,jdbcType=DECIMAL},
+      </if>
+      <if test="periodStart != null" >
+        PERIOD_START = #{periodStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="periodEnd != null" >
+        PERIOD_END = #{periodEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginDate != null" >
+        LOGIN_DATE = #{loginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="custId != null" >
+        CUST_ID = #{custId,jdbcType=VARCHAR},
+      </if>
+      <if test="custType != null" >
+        CUST_TYPE = #{custType,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatePasswordTime != null" >
+        LAST_UPDATE_PASSWORD_TIME = #{lastUpdatePasswordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginLockTime != null" >
+        LAST_LOGIN_LOCK_TIME = #{lastLoginLockTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="regChanCode != null" >
+        REG_CHAN_CODE = #{regChanCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.CustUser" >
+    update T_CUST_USER
+    set LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      MOBILE = #{mobile,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      EMAIL_ACTIVATE_CODE = #{emailActivateCode,jdbcType=VARCHAR},
+      ENABLED = #{enabled,jdbcType=DECIMAL},
+      PERIOD_START = #{periodStart,jdbcType=TIMESTAMP},
+      PERIOD_END = #{periodEnd,jdbcType=TIMESTAMP},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      LOGIN_DATE = #{loginDate,jdbcType=TIMESTAMP},
+      CUST_ID = #{custId,jdbcType=VARCHAR},
+      CUST_TYPE = #{custType,jdbcType=VARCHAR},
+      LAST_UPDATE_PASSWORD_TIME = #{lastUpdatePasswordTime,jdbcType=TIMESTAMP},
+      LAST_LOGIN_LOCK_TIME = #{lastLoginLockTime,jdbcType=TIMESTAMP},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},REG_CHAN_CODE = #{regChanCode,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+   <select id="queryCountCustUser" resultType="int">
+		select 
+		count(*) 
+		from T_CUST_USER tcu join T_CUST_PERSON tcp on
+		tcu.CUST_ID = tcp.ID
+		AND  tcp.CERT_STATUS=1
+	</select>
+	<select id="queryNoCountCustUser" resultType="int">
+		select 
+		count(*) 
+		from T_CUST_USER tcu join T_CUST_PERSON tcp on
+		tcu.CUST_ID = tcp.ID
+		AND  tcp.CERT_STATUS!=1
+	</select>
+	<select id="queryLastMonthCount" resultType="int">
+		select 
+		count(*) 
+		from T_CUST_USER tcu join T_CUST_PERSON tcp on
+		tcu.CUST_ID = tcp.ID
+		AND  tcp.CERT_STATUS=1
+		AND  DATE_FORMAT(tcu.CREATE_DATE,'%Y-%m')= DATE_FORMAT(DATE_SUB(CURDATE(),INTERVAL 1 MONTH),'%Y-%m')
+	</select>
+	<select id="queryNoLastMonthCount" resultType="int">
+		select 
+		count(*) 
+		from T_CUST_USER tcu join T_CUST_PERSON tcp on
+		tcu.CUST_ID = tcp.ID
+		AND  tcp.CERT_STATUS!=1
+		AND  DATE_FORMAT(tcu.CREATE_DATE,'%Y-%m')= DATE_FORMAT(DATE_SUB(CURDATE(),INTERVAL 1 MONTH),'%Y-%m')
+	</select>
+	<select id="queryMonthCount" resultType="int">
+		select 
+		count(*) 
+		from T_CUST_USER tcu join T_CUST_PERSON tcp on
+		tcu.CUST_ID = tcp.ID
+		AND  tcp.CERT_STATUS=1
+		AND  DATE_FORMAT(tcu.CREATE_DATE,'%Y-%m')= DATE_FORMAT(NOW(),'%Y-%m')
+	</select>
+	<select id="queryNoMonthCount" resultType="int">
+		select 
+		count(*) 
+		from T_CUST_USER tcu join T_CUST_PERSON tcp on
+		tcu.CUST_ID = tcp.ID
+		AND  tcp.CERT_STATUS!=1
+		AND  DATE_FORMAT(tcu.`CREATE_DATE`,'%Y-%m')= DATE_FORMAT(NOW(),'%Y-%m')
+	</select>
+	<select id="queryWeekCount" resultType="int">
+		select 
+		count(*) 
+		from T_CUST_USER tcu join T_CUST_PERSON tcp on
+		tcu.CUST_ID = tcp.ID
+		AND  tcp.CERT_STATUS=1
+		AND  YEARWEEK(DATE_FORMAT(tcu.CREATE_DATE,'%Y-%m-%d'))= YEARWEEK(NOW())
+	</select>
+	<select id="queryNoWeekCount" resultType="int">
+		select 
+		count(*) 
+		from T_CUST_USER tcu join T_CUST_PERSON tcp on
+		tcu.CUST_ID = tcp.ID
+		AND  tcp.CERT_STATUS!=1
+		AND  YEARWEEK(DATE_FORMAT(tcu.CREATE_DATE,'%Y-%m-%d'))= YEARWEEK(NOW())
+	</select>
+	<select id="queryAllCustId" resultType="java.lang.String" >
+	    select CUST_ID
+	    from T_CUST_USER
+   </select>
+	
+</mapper>

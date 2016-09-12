@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlebank.dao.CustEnterpriseDao" >
+  <resultMap id="BaseResultMap" type="com.zlebank.model.CustEnterprise" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="CREDENTIALS_TYPE" property="credentialsType" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="FAX" property="fax" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="SUMMARY" property="summary" jdbcType="VARCHAR" />
+    <result column="COMPANY_IMG" property="companyImg" jdbcType="VARCHAR" />
+    <result column="ORGANIZTION_IMG" property="organiztionImg" jdbcType="VARCHAR" />
+    <result column="TAX_IMG" property="taxImg" jdbcType="VARCHAR" />
+    <result column="BANK_ACC_IMG" property="bankAccImg" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CERT_STATUS" property="certStatus" jdbcType="VARCHAR" />
+    <result column="PR_STATUS" property="prStatus" jdbcType="VARCHAR" />
+    <result column="LEGALPERSON_ID" property="legalpersonId" jdbcType="VARCHAR" />
+    <result column="LEGALPERSON_BACK_ID" property="legalpersonBackId" jdbcType="VARCHAR" />
+    <result column="LEGALPERSON_MOBILE" property="legalpersonMobile" jdbcType="VARCHAR" />
+    <result column="COMPANY_POA_ID" property="companyPoaId" jdbcType="VARCHAR" />
+    <result column="AGENT_ID" property="agentId" jdbcType="VARCHAR" />
+    <result column="AGENT_BACK_ID" property="agentBackId" jdbcType="VARCHAR" />
+    <result column="AGENT_NAME" property="agentName" jdbcType="VARCHAR" />
+    <result column="AGENT_MOBILE" property="agentMobile" jdbcType="VARCHAR" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="CREATED_DATE" property="createdDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, NAME, CREDENTIALS_TYPE, PHONE, FAX, ADDRESS, SUMMARY, COMPANY_IMG, ORGANIZTION_IMG, 
+    TAX_IMG, BANK_ACC_IMG, STATUS, CERT_STATUS, PR_STATUS, LEGALPERSON_ID, LEGALPERSON_BACK_ID, 
+    LEGALPERSON_MOBILE, COMPANY_POA_ID, AGENT_ID, AGENT_BACK_ID, AGENT_NAME, AGENT_MOBILE, 
+    UPDATE_DATE, CREATED_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_CUST_ENTERPRISE
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <!-- 通过name来查是否有这个企业客户 -->
+  <select id="selectByEnterpriseName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_CUST_ENTERPRISE
+    where NAME = #{name,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_CUST_ENTERPRISE
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zlebank.model.CustEnterprise" >
+    insert into T_CUST_ENTERPRISE (ID, NAME, CREDENTIALS_TYPE, 
+      PHONE, FAX, ADDRESS, 
+      SUMMARY, COMPANY_IMG, ORGANIZTION_IMG, 
+      TAX_IMG, BANK_ACC_IMG, STATUS, 
+      CERT_STATUS, PR_STATUS, LEGALPERSON_ID, 
+      LEGALPERSON_BACK_ID, LEGALPERSON_MOBILE, COMPANY_POA_ID, 
+      AGENT_ID, AGENT_BACK_ID, AGENT_NAME, 
+      AGENT_MOBILE, UPDATE_DATE, CREATED_DATE
+      )
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{credentialsType,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{fax,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{summary,jdbcType=VARCHAR}, #{companyImg,jdbcType=VARCHAR}, #{organiztionImg,jdbcType=VARCHAR}, 
+      #{taxImg,jdbcType=VARCHAR}, #{bankAccImg,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{certStatus,jdbcType=VARCHAR}, #{prStatus,jdbcType=VARCHAR}, #{legalpersonId,jdbcType=VARCHAR}, 
+      #{legalpersonBackId,jdbcType=VARCHAR}, #{legalpersonMobile,jdbcType=VARCHAR}, #{companyPoaId,jdbcType=VARCHAR}, 
+      #{agentId,jdbcType=VARCHAR}, #{agentBackId,jdbcType=VARCHAR}, #{agentName,jdbcType=VARCHAR}, 
+      #{agentMobile,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{createdDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zlebank.model.CustEnterprise" >
+    insert into T_CUST_ENTERPRISE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="credentialsType != null" >
+        CREDENTIALS_TYPE,
+      </if>
+      <if test="phone != null" >
+        PHONE,
+      </if>
+      <if test="fax != null" >
+        FAX,
+      </if>
+      <if test="address != null" >
+        ADDRESS,
+      </if>
+      <if test="summary != null" >
+        SUMMARY,
+      </if>
+      <if test="companyImg != null" >
+        COMPANY_IMG,
+      </if>
+      <if test="organiztionImg != null" >
+        ORGANIZTION_IMG,
+      </if>
+      <if test="taxImg != null" >
+        TAX_IMG,
+      </if>
+      <if test="bankAccImg != null" >
+        BANK_ACC_IMG,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="certStatus != null" >
+        CERT_STATUS,
+      </if>
+      <if test="prStatus != null" >
+        PR_STATUS,
+      </if>
+      <if test="legalpersonId != null" >
+        LEGALPERSON_ID,
+      </if>
+      <if test="legalpersonBackId != null" >
+        LEGALPERSON_BACK_ID,
+      </if>
+      <if test="legalpersonMobile != null" >
+        LEGALPERSON_MOBILE,
+      </if>
+      <if test="companyPoaId != null" >
+        COMPANY_POA_ID,
+      </if>
+      <if test="agentId != null" >
+        AGENT_ID,
+      </if>
+      <if test="agentBackId != null" >
+        AGENT_BACK_ID,
+      </if>
+      <if test="agentName != null" >
+        AGENT_NAME,
+      </if>
+      <if test="agentMobile != null" >
+        AGENT_MOBILE,
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE,
+      </if>
+      <if test="createdDate != null" >
+        CREATED_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="credentialsType != null" >
+        #{credentialsType,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="companyImg != null" >
+        #{companyImg,jdbcType=VARCHAR},
+      </if>
+      <if test="organiztionImg != null" >
+        #{organiztionImg,jdbcType=VARCHAR},
+      </if>
+      <if test="taxImg != null" >
+        #{taxImg,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccImg != null" >
+        #{bankAccImg,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="certStatus != null" >
+        #{certStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="prStatus != null" >
+        #{prStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="legalpersonId != null" >
+        #{legalpersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="legalpersonBackId != null" >
+        #{legalpersonBackId,jdbcType=VARCHAR},
+      </if>
+      <if test="legalpersonMobile != null" >
+        #{legalpersonMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="companyPoaId != null" >
+        #{companyPoaId,jdbcType=VARCHAR},
+      </if>
+      <if test="agentId != null" >
+        #{agentId,jdbcType=VARCHAR},
+      </if>
+      <if test="agentBackId != null" >
+        #{agentBackId,jdbcType=VARCHAR},
+      </if>
+      <if test="agentName != null" >
+        #{agentName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentMobile != null" >
+        #{agentMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.CustEnterprise" >
+    update T_CUST_ENTERPRISE
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="credentialsType != null" >
+        CREDENTIALS_TYPE = #{credentialsType,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="fax != null" >
+        FAX = #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        ADDRESS = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        SUMMARY = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="companyImg != null" >
+        COMPANY_IMG = #{companyImg,jdbcType=VARCHAR},
+      </if>
+      <if test="organiztionImg != null" >
+        ORGANIZTION_IMG = #{organiztionImg,jdbcType=VARCHAR},
+      </if>
+      <if test="taxImg != null" >
+        TAX_IMG = #{taxImg,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccImg != null" >
+        BANK_ACC_IMG = #{bankAccImg,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="certStatus != null" >
+        CERT_STATUS = #{certStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="prStatus != null" >
+        PR_STATUS = #{prStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="legalpersonId != null" >
+        LEGALPERSON_ID = #{legalpersonId,jdbcType=VARCHAR},
+      </if>
+      <if test="legalpersonBackId != null" >
+        LEGALPERSON_BACK_ID = #{legalpersonBackId,jdbcType=VARCHAR},
+      </if>
+      <if test="legalpersonMobile != null" >
+        LEGALPERSON_MOBILE = #{legalpersonMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="companyPoaId != null" >
+        COMPANY_POA_ID = #{companyPoaId,jdbcType=VARCHAR},
+      </if>
+      <if test="agentId != null" >
+        AGENT_ID = #{agentId,jdbcType=VARCHAR},
+      </if>
+      <if test="agentBackId != null" >
+        AGENT_BACK_ID = #{agentBackId,jdbcType=VARCHAR},
+      </if>
+      <if test="agentName != null" >
+        AGENT_NAME = #{agentName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentMobile != null" >
+        AGENT_MOBILE = #{agentMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdDate != null" >
+        CREATED_DATE = #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.CustEnterprise" >
+    update T_CUST_ENTERPRISE
+    set NAME = #{name,jdbcType=VARCHAR},
+      CREDENTIALS_TYPE = #{credentialsType,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      FAX = #{fax,jdbcType=VARCHAR},
+      ADDRESS = #{address,jdbcType=VARCHAR},
+      SUMMARY = #{summary,jdbcType=VARCHAR},
+      COMPANY_IMG = #{companyImg,jdbcType=VARCHAR},
+      ORGANIZTION_IMG = #{organiztionImg,jdbcType=VARCHAR},
+      TAX_IMG = #{taxImg,jdbcType=VARCHAR},
+      BANK_ACC_IMG = #{bankAccImg,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      CERT_STATUS = #{certStatus,jdbcType=VARCHAR},
+      PR_STATUS = #{prStatus,jdbcType=VARCHAR},
+      LEGALPERSON_ID = #{legalpersonId,jdbcType=VARCHAR},
+      LEGALPERSON_BACK_ID = #{legalpersonBackId,jdbcType=VARCHAR},
+      LEGALPERSON_MOBILE = #{legalpersonMobile,jdbcType=VARCHAR},
+      COMPANY_POA_ID = #{companyPoaId,jdbcType=VARCHAR},
+      AGENT_ID = #{agentId,jdbcType=VARCHAR},
+      AGENT_BACK_ID = #{agentBackId,jdbcType=VARCHAR},
+      AGENT_NAME = #{agentName,jdbcType=VARCHAR},
+      AGENT_MOBILE = #{agentMobile,jdbcType=VARCHAR},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      CREATED_DATE = #{createdDate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 分页查询总数 --> 
+    <select id="findListPageCount" resultType="int" >
+	    select count(ID) from T_CUST_ENTERPRISE
+	    <include refid="dynamicPageWhere" /> 
+  	</select>  
+  	
+  	<!-- 分页查询 -->
+	<select id="findListPage" resultMap="BaseResultMap" >
+		<choose>  
+            <when test=" pageVO.size&lt;0">  
+	    		<include refid="baseDynamicQuery" /> 
+            </when>  
+            <otherwise> 
+            	<include refid="baseDynamicQuery" />
+            	limit #{pageVO.startSize, jdbcType=INTEGER}, #{pageVO.size, jdbcType=INTEGER}  
+            </otherwise>  
+        </choose>
+  	</select>
+  	
+  	<sql id="baseDynamicQuery">
+		select * from T_CUST_ENTERPRISE
+		<include refid="dynamicPageWhere" /> 
+		order by UPDATE_DATE desc
+	</sql>  	
+  	<sql id="dynamicPageWhere">
+  		<where>
+  			1=1  	
+	      <if test="enterprise.credentialsType != null and enterprise.credentialsType !=''" >
+	      	and CREDENTIALS_TYPE = #{enterprise.credentialsType,jdbcType=VARCHAR}
+	      </if>
+	      <if test="enterprise.name != null and enterprise.name !=''" >
+	      	and NAME = #{enterprise.name,jdbcType=VARCHAR}
+	      </if>
+	      <if test="enterprise.status != null and enterprise.status !=''" >
+	        and STATUS = #{enterprise.status,jdbcType=VARCHAR}
+	      </if>
+	      <if test="enterprise.certStatus != null and enterprise.certStatus !=''" >
+	        and CERT_STATUS = #{enterprise.certStatus,jdbcType=VARCHAR}
+	      </if>
+	      <if test="enterprise.prStatus != null and enterprise.prStatus !=''" >
+	        and PR_STATUS = #{enterprise.prStatus,jdbcType=TIMESTAMP}
+	      </if>
+  		</where>
+  	</sql>
+</mapper>

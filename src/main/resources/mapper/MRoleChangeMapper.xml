@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlebank.dao.MRoleChangeDao" >
+  <resultMap id="BaseResultMap" type="com.zlebank.model.MRoleChange" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="ROLE_ID" property="roleId" jdbcType="VARCHAR" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.zlebank.model.MRoleChangeWithBLOBs" extends="BaseResultMap" >
+    <result column="ORIGINAL_OBJECT" property="originalObject" jdbcType="LONGVARBINARY" />
+    <result column="NEW_OBJECT" property="newObject" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, USER_ID, TYPE, STATUS, ROLE_ID, CREATED_TIME, DESCRIPTION
+  </sql>
+  <sql id="Blob_Column_List" >
+    ORIGINAL_OBJECT, NEW_OBJECT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from T_M_ROLE_CHANGE
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_M_ROLE_CHANGE
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zlebank.model.MRoleChangeWithBLOBs" >
+    insert into T_M_ROLE_CHANGE (ID, USER_ID, TYPE, 
+      STATUS, ROLE_ID, CREATED_TIME, 
+      DESCRIPTION, ORIGINAL_OBJECT, NEW_OBJECT
+      )
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{description,jdbcType=VARCHAR}, #{originalObject,jdbcType=LONGVARBINARY}, #{newObject,jdbcType=LONGVARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zlebank.model.MRoleChangeWithBLOBs" >
+    insert into T_M_ROLE_CHANGE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="roleId != null" >
+        ROLE_ID,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+      <if test="originalObject != null" >
+        ORIGINAL_OBJECT,
+      </if>
+      <if test="newObject != null" >
+        NEW_OBJECT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="originalObject != null" >
+        #{originalObject,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="newObject != null" >
+        #{newObject,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.MRoleChangeWithBLOBs" >
+    update T_M_ROLE_CHANGE
+    <set >
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        ROLE_ID = #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="originalObject != null" >
+        ORIGINAL_OBJECT = #{originalObject,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="newObject != null" >
+        NEW_OBJECT = #{newObject,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zlebank.model.MRoleChangeWithBLOBs" >
+    update T_M_ROLE_CHANGE
+    set USER_ID = #{userId,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      ROLE_ID = #{roleId,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      ORIGINAL_OBJECT = #{originalObject,jdbcType=LONGVARBINARY},
+      NEW_OBJECT = #{newObject,jdbcType=LONGVARBINARY}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.MRoleChange" >
+    update T_M_ROLE_CHANGE
+    set USER_ID = #{userId,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      ROLE_ID = #{roleId,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      DESCRIPTION = #{description,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

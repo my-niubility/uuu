@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlebank.dao.CustEntAuditDao" >
+  <resultMap id="BaseResultMap" type="com.zlebank.model.CustEntAudit" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CUST_ID" property="custId" jdbcType="VARCHAR" />
+    <result column="ENTERPRISE_CHANGE_ID" property="enterpriseChangeId" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="PASSED" property="passed" jdbcType="DECIMAL" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="AUDIT_CUST_ID" property="auditCustId" jdbcType="VARCHAR" />
+    <result column="IS_MODIFY" property="isModify" jdbcType="DECIMAL" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CUST_ID, ENTERPRISE_CHANGE_ID, TYPE, PASSED, CREATED_TIME, AUDIT_CUST_ID, IS_MODIFY, 
+    DESCRIPTION
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_CUST_ENT_AUDIT
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_CUST_ENT_AUDIT
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zlebank.model.CustEntAudit" >
+    insert into T_CUST_ENT_AUDIT (ID, CUST_ID, ENTERPRISE_CHANGE_ID, 
+      TYPE, PASSED, CREATED_TIME, 
+      AUDIT_CUST_ID, IS_MODIFY, DESCRIPTION
+      )
+    values (#{id,jdbcType=VARCHAR}, #{custId,jdbcType=VARCHAR}, #{enterpriseChangeId,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{passed,jdbcType=DECIMAL}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{auditCustId,jdbcType=VARCHAR}, #{isModify,jdbcType=DECIMAL}, #{description,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zlebank.model.CustEntAudit" >
+    insert into T_CUST_ENT_AUDIT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="custId != null" >
+        CUST_ID,
+      </if>
+      <if test="enterpriseChangeId != null" >
+        ENTERPRISE_CHANGE_ID,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="passed != null" >
+        PASSED,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="auditCustId != null" >
+        AUDIT_CUST_ID,
+      </if>
+      <if test="isModify != null" >
+        IS_MODIFY,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null" >
+        #{custId,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseChangeId != null" >
+        #{enterpriseChangeId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="passed != null" >
+        #{passed,jdbcType=DECIMAL},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditCustId != null" >
+        #{auditCustId,jdbcType=VARCHAR},
+      </if>
+      <if test="isModify != null" >
+        #{isModify,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.CustEntAudit" >
+    update T_CUST_ENT_AUDIT
+    <set >
+      <if test="custId != null" >
+        CUST_ID = #{custId,jdbcType=VARCHAR},
+      </if>
+      <if test="enterpriseChangeId != null" >
+        ENTERPRISE_CHANGE_ID = #{enterpriseChangeId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="passed != null" >
+        PASSED = #{passed,jdbcType=DECIMAL},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditCustId != null" >
+        AUDIT_CUST_ID = #{auditCustId,jdbcType=VARCHAR},
+      </if>
+      <if test="isModify != null" >
+        IS_MODIFY = #{isModify,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.CustEntAudit" >
+    update T_CUST_ENT_AUDIT
+    set CUST_ID = #{custId,jdbcType=VARCHAR},
+      ENTERPRISE_CHANGE_ID = #{enterpriseChangeId,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      PASSED = #{passed,jdbcType=DECIMAL},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      AUDIT_CUST_ID = #{auditCustId,jdbcType=VARCHAR},
+      IS_MODIFY = #{isModify,jdbcType=DECIMAL},
+      DESCRIPTION = #{description,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

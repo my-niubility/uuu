@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlebank.dao.SerialRefDao" >
+  <resultMap id="BaseResultMap" type="com.zlebank.model.SerialRef" >
+    <id column="SERIAL_ID" property="serialId" jdbcType="VARCHAR" />
+    <result column="REF_ID" property="refId" jdbcType="VARCHAR" />
+    <result column="REC_FLAG" property="recFlag" jdbcType="CHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="RETURN_CODE" property="returnCode" jdbcType="VARCHAR" />
+    <result column="RETURN_MESSAGE" property="returnMessage" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SERIAL_ID, REF_ID, REC_FLAG, CREATE_TIME, UPDATE_TIME, RETURN_CODE, RETURN_MESSAGE, 
+    REMARK
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_SERIAL_REF
+    where SERIAL_ID = #{serialId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_SERIAL_REF
+    where SERIAL_ID = #{serialId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zlebank.model.SerialRef" >
+    insert into T_SERIAL_REF (SERIAL_ID, REF_ID, REC_FLAG, 
+      CREATE_TIME, UPDATE_TIME, RETURN_CODE, 
+      RETURN_MESSAGE, REMARK)
+    values (#{serialId,jdbcType=VARCHAR}, #{refId,jdbcType=VARCHAR}, #{recFlag,jdbcType=CHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{returnCode,jdbcType=VARCHAR}, 
+      #{returnMessage,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zlebank.model.SerialRef" >
+    insert into T_SERIAL_REF
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serialId != null" >
+        SERIAL_ID,
+      </if>
+      <if test="refId != null" >
+        REF_ID,
+      </if>
+      <if test="recFlag != null" >
+        REC_FLAG,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="returnCode != null" >
+        RETURN_CODE,
+      </if>
+      <if test="returnMessage != null" >
+        RETURN_MESSAGE,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serialId != null" >
+        #{serialId,jdbcType=VARCHAR},
+      </if>
+      <if test="refId != null" >
+        #{refId,jdbcType=VARCHAR},
+      </if>
+      <if test="recFlag != null" >
+        #{recFlag,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returnCode != null" >
+        #{returnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="returnMessage != null" >
+        #{returnMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.SerialRef" >
+    update T_SERIAL_REF
+    <set >
+      <if test="refId != null" >
+        REF_ID = #{refId,jdbcType=VARCHAR},
+      </if>
+      <if test="recFlag != null" >
+        REC_FLAG = #{recFlag,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="returnCode != null" >
+        RETURN_CODE = #{returnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="returnMessage != null" >
+        RETURN_MESSAGE = #{returnMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SERIAL_ID = #{serialId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.SerialRef" >
+    update T_SERIAL_REF
+    set REF_ID = #{refId,jdbcType=VARCHAR},
+      REC_FLAG = #{recFlag,jdbcType=CHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      RETURN_CODE = #{returnCode,jdbcType=VARCHAR},
+      RETURN_MESSAGE = #{returnMessage,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where SERIAL_ID = #{serialId,jdbcType=VARCHAR}
+  </update>
+</mapper>

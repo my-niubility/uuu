@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlebank.dao.MResourcesDao" >
+  <resultMap id="BaseResultMap" type="com.zlebank.model.MResources" >
+    <id column="RESOURCES_ID" property="resourcesId" jdbcType="VARCHAR" />
+    <result column="RESOURCES_NAME" property="resourcesName" jdbcType="VARCHAR" />
+    <result column="RESOURCES_TYPE" property="resourcesType" jdbcType="VARCHAR" />
+    <result column="PRIORITY" property="priority" jdbcType="VARCHAR" />
+    <result column="PARENT_ID" property="parentId" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    RESOURCES_ID, RESOURCES_NAME, RESOURCES_TYPE, PRIORITY, PARENT_ID, STATUS, DESCRIPTION, 
+    CREATED_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_M_RESOURCES
+    where RESOURCES_ID = #{resourcesId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findResourcesByRoleId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  		select res.* from T_M_RESOURCES res,T_M_ROLE_RESOURCES rr 
+  		where rr.RESOURCES_ID=res.RESOURCES_ID and rr.ROLE_ID = #{roleId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findResourceIdCache" resultType="java.lang.String" parameterType="java.lang.String" >
+  		select RESOURCES_ID from T_M_RESOURCES where RESOURCES_TYPE = #{resourcesType,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_M_RESOURCES
+    where RESOURCES_ID = #{resourcesId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zlebank.model.MResources" >
+    insert into T_M_RESOURCES (RESOURCES_ID, RESOURCES_NAME, RESOURCES_TYPE, 
+      PRIORITY, PARENT_ID, STATUS, 
+      DESCRIPTION, CREATED_TIME)
+    values (#{resourcesId,jdbcType=VARCHAR}, #{resourcesName,jdbcType=VARCHAR}, #{resourcesType,jdbcType=VARCHAR}, 
+      #{priority,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zlebank.model.MResources" >
+    insert into T_M_RESOURCES
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="resourcesId != null" >
+        RESOURCES_ID,
+      </if>
+      <if test="resourcesName != null" >
+        RESOURCES_NAME,
+      </if>
+      <if test="resourcesType != null" >
+        RESOURCES_TYPE,
+      </if>
+      <if test="priority != null" >
+        PRIORITY,
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="resourcesId != null" >
+        #{resourcesId,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcesName != null" >
+        #{resourcesName,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcesType != null" >
+        #{resourcesType,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null" >
+        #{priority,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.MResources" >
+    update T_M_RESOURCES
+    <set >
+      <if test="resourcesName != null" >
+        RESOURCES_NAME = #{resourcesName,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcesType != null" >
+        RESOURCES_TYPE = #{resourcesType,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null" >
+        PRIORITY = #{priority,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where RESOURCES_ID = #{resourcesId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.MResources" >
+    update T_M_RESOURCES
+    set RESOURCES_NAME = #{resourcesName,jdbcType=VARCHAR},
+      RESOURCES_TYPE = #{resourcesType,jdbcType=VARCHAR},
+      PRIORITY = #{priority,jdbcType=VARCHAR},
+      PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP}
+    where RESOURCES_ID = #{resourcesId,jdbcType=VARCHAR}
+  </update>
+</mapper>

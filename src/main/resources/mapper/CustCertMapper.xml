@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlebank.dao.CustCertDao" >
+  <resultMap id="BaseResultMap" type="com.zlebank.model.CustCert" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CREDENTIALS_TYPE" property="credentialsType" jdbcType="VARCHAR" />
+    <result column="CUST_ID" property="custId" jdbcType="VARCHAR" />
+    <result column="CERT_FILE_TYPE" property="certFileType" jdbcType="VARCHAR" />
+    <result column="CERT_UPDATE_TIME" property="certUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.zlebank.model.CustCert" extends="BaseResultMap" >
+    <result column="CERT_FILE" property="certFile" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CREDENTIALS_TYPE, CUST_ID, CERT_FILE_TYPE, CERT_UPDATE_TIME
+  </sql>
+  <sql id="Blob_Column_List" >
+    CERT_FILE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from T_CUST_CERT
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_CUST_CERT
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zlebank.model.CustCert" >
+    insert into T_CUST_CERT (ID, CREDENTIALS_TYPE, CUST_ID, 
+      CERT_FILE_TYPE, CERT_UPDATE_TIME, CERT_FILE
+      )
+    values (#{id,jdbcType=VARCHAR}, #{credentialsType,jdbcType=VARCHAR}, #{custId,jdbcType=VARCHAR}, 
+      #{certFileType,jdbcType=VARCHAR}, #{certUpdateTime,jdbcType=TIMESTAMP}, #{certFile,jdbcType=LONGVARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zlebank.model.CustCert" >
+    insert into T_CUST_CERT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="credentialsType != null" >
+        CREDENTIALS_TYPE,
+      </if>
+      <if test="custId != null" >
+        CUST_ID,
+      </if>
+      <if test="certFileType != null" >
+        CERT_FILE_TYPE,
+      </if>
+      <if test="certUpdateTime != null" >
+        CERT_UPDATE_TIME,
+      </if>
+      <if test="certFile != null" >
+        CERT_FILE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="credentialsType != null" >
+        #{credentialsType,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null" >
+        #{custId,jdbcType=VARCHAR},
+      </if>
+      <if test="certFileType != null" >
+        #{certFileType,jdbcType=VARCHAR},
+      </if>
+      <if test="certUpdateTime != null" >
+        #{certUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="certFile != null" >
+        #{certFile,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.CustCert" >
+    update T_CUST_CERT
+    <set >
+      <if test="credentialsType != null" >
+        CREDENTIALS_TYPE = #{credentialsType,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null" >
+        CUST_ID = #{custId,jdbcType=VARCHAR},
+      </if>
+      <if test="certFileType != null" >
+        CERT_FILE_TYPE = #{certFileType,jdbcType=VARCHAR},
+      </if>
+      <if test="certUpdateTime != null" >
+        CERT_UPDATE_TIME = #{certUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="certFile != null" >
+        CERT_FILE = #{certFile,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zlebank.model.CustCert" >
+    update T_CUST_CERT
+    set CREDENTIALS_TYPE = #{credentialsType,jdbcType=VARCHAR},
+      CUST_ID = #{custId,jdbcType=VARCHAR},
+      CERT_FILE_TYPE = #{certFileType,jdbcType=VARCHAR},
+      CERT_UPDATE_TIME = #{certUpdateTime,jdbcType=TIMESTAMP},
+      CERT_FILE = #{certFile,jdbcType=LONGVARBINARY}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.CustCert" >
+    update T_CUST_CERT
+    set CREDENTIALS_TYPE = #{credentialsType,jdbcType=VARCHAR},
+      CUST_ID = #{custId,jdbcType=VARCHAR},
+      CERT_FILE_TYPE = #{certFileType,jdbcType=VARCHAR},
+      CERT_UPDATE_TIME = #{certUpdateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

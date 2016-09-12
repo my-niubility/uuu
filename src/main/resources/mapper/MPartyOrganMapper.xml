@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlebank.dao.MPartyOrganDao" >
+  <resultMap id="BaseResultMap" type="com.zlebank.model.MPartyOrgan" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="SEQUENCE" property="sequence" jdbcType="DECIMAL" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="ENABLED" property="enabled" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, NAME, SEQUENCE, DESCRIPTION, ENABLED
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_M_PARTY_ORGANIZATION
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_M_PARTY_ORGANIZATION
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zlebank.model.MPartyOrgan" >
+    insert into T_M_PARTY_ORGANIZATION (ID, NAME, SEQUENCE, 
+      DESCRIPTION, ENABLED)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sequence,jdbcType=DECIMAL}, 
+      #{description,jdbcType=VARCHAR}, #{enabled,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zlebank.model.MPartyOrgan" >
+    insert into T_M_PARTY_ORGANIZATION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="sequence != null" >
+        SEQUENCE,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+      <if test="enabled != null" >
+        ENABLED,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sequence != null" >
+        #{sequence,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null" >
+        #{enabled,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.MPartyOrgan" >
+    update T_M_PARTY_ORGANIZATION
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sequence != null" >
+        SEQUENCE = #{sequence,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null" >
+        ENABLED = #{enabled,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.MPartyOrgan" >
+    update T_M_PARTY_ORGANIZATION
+    set NAME = #{name,jdbcType=VARCHAR},
+      SEQUENCE = #{sequence,jdbcType=DECIMAL},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      ENABLED = #{enabled,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

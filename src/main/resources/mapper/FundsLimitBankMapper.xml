@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlebank.dao.FundsLimitBankDao" >
+  <resultMap id="BaseResultMap" type="com.zlebank.model.FundsLimitBank" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="BANK_ID" property="bankId" jdbcType="VARCHAR" />
+    <result column="CARD_TYPE" property="cardType" jdbcType="CHAR" />
+    <result column="CHANNEL_TYPE" property="channelType" jdbcType="CHAR" />
+    <result column="BUSINESS_TYPE" property="businessType" jdbcType="CHAR" />
+    <result column="SINGLE_LIMIT" property="singleLimit" jdbcType="DECIMAL" />
+    <result column="DAY_LIMIT" property="dayLimit" jdbcType="DECIMAL" />
+    <result column="MONTH_LIMIT" property="monthLimit" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, BANK_ID, CARD_TYPE, CHANNEL_TYPE, BUSINESS_TYPE, SINGLE_LIMIT, DAY_LIMIT, MONTH_LIMIT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_FUNDS_LIMIT_BANK
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_FUNDS_LIMIT_BANK
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zlebank.model.FundsLimitBank" >
+    insert into T_FUNDS_LIMIT_BANK (ID, BANK_ID, CARD_TYPE, 
+      CHANNEL_TYPE, BUSINESS_TYPE, SINGLE_LIMIT, 
+      DAY_LIMIT, MONTH_LIMIT)
+    values (#{id,jdbcType=VARCHAR}, #{bankId,jdbcType=VARCHAR}, #{cardType,jdbcType=CHAR}, 
+      #{channelType,jdbcType=CHAR}, #{businessType,jdbcType=CHAR}, #{singleLimit,jdbcType=DECIMAL}, 
+      #{dayLimit,jdbcType=DECIMAL}, #{monthLimit,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zlebank.model.FundsLimitBank" >
+    insert into T_FUNDS_LIMIT_BANK
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="bankId != null" >
+        BANK_ID,
+      </if>
+      <if test="cardType != null" >
+        CARD_TYPE,
+      </if>
+      <if test="channelType != null" >
+        CHANNEL_TYPE,
+      </if>
+      <if test="businessType != null" >
+        BUSINESS_TYPE,
+      </if>
+      <if test="singleLimit != null" >
+        SINGLE_LIMIT,
+      </if>
+      <if test="dayLimit != null" >
+        DAY_LIMIT,
+      </if>
+      <if test="monthLimit != null" >
+        MONTH_LIMIT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="bankId != null" >
+        #{bankId,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null" >
+        #{cardType,jdbcType=CHAR},
+      </if>
+      <if test="channelType != null" >
+        #{channelType,jdbcType=CHAR},
+      </if>
+      <if test="businessType != null" >
+        #{businessType,jdbcType=CHAR},
+      </if>
+      <if test="singleLimit != null" >
+        #{singleLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="dayLimit != null" >
+        #{dayLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="monthLimit != null" >
+        #{monthLimit,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.FundsLimitBank" >
+    update T_FUNDS_LIMIT_BANK
+    <set >
+      <if test="bankId != null" >
+        BANK_ID = #{bankId,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null" >
+        CARD_TYPE = #{cardType,jdbcType=CHAR},
+      </if>
+      <if test="channelType != null" >
+        CHANNEL_TYPE = #{channelType,jdbcType=CHAR},
+      </if>
+      <if test="businessType != null" >
+        BUSINESS_TYPE = #{businessType,jdbcType=CHAR},
+      </if>
+      <if test="singleLimit != null" >
+        SINGLE_LIMIT = #{singleLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="dayLimit != null" >
+        DAY_LIMIT = #{dayLimit,jdbcType=DECIMAL},
+      </if>
+      <if test="monthLimit != null" >
+        MONTH_LIMIT = #{monthLimit,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.FundsLimitBank" >
+    update T_FUNDS_LIMIT_BANK
+    set BANK_ID = #{bankId,jdbcType=VARCHAR},
+      CARD_TYPE = #{cardType,jdbcType=CHAR},
+      CHANNEL_TYPE = #{channelType,jdbcType=CHAR},
+      BUSINESS_TYPE = #{businessType,jdbcType=CHAR},
+      SINGLE_LIMIT = #{singleLimit,jdbcType=DECIMAL},
+      DAY_LIMIT = #{dayLimit,jdbcType=DECIMAL},
+      MONTH_LIMIT = #{monthLimit,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+   <!-- 分页查询总数 --> 
+    <select id="findListPageCount" resultType="int" >
+	    select count(ID) from T_FUNDS_LIMIT_BANK
+	    <include refid="dynamicPageWhere" /> 
+  	</select>  
+  	
+  	<!-- 分页查询 -->
+	<select id="findListPage" resultMap="BaseResultMap" >
+		<choose>  
+            <when test=" pageVO.size&lt;0">  
+	    		<include refid="baseDynamicQuery" /> 
+            </when>  
+            <otherwise> 
+            	<include refid="baseDynamicQuery" />
+            	limit #{pageVO.startSize, jdbcType=INTEGER}, #{pageVO.size, jdbcType=INTEGER}  
+            </otherwise>  
+        </choose>
+  	</select>
+  	
+  	<sql id="baseDynamicQuery">
+		select * from T_FUNDS_LIMIT_BANK
+		<include refid="dynamicPageWhere" /> 
+	</sql>  	
+  	<sql id="dynamicPageWhere">
+  		<where>
+  			1=1  	
+	      <if test="fundsLimit.bankId != null and fundsLimit.bankId !=''" >
+	      	and BANK_ID = #{fundsLimit.bankId,jdbcType=VARCHAR}
+	      </if>
+	      <if test="fundsLimit.cardType != null and fundsLimit.cardType !=''" >
+	      	and CARD_TYPE = #{fundsLimit.cardType,jdbcType=CHAR}
+	      </if>
+	      <if test="fundsLimit.channelType != null and fundsLimit.channelType !=''" >
+	      	and CHANNEL_TYPE = #{fundsLimit.channelType,jdbcType=CHAR}
+	      </if>
+	      <if test="fundsLimit.businessType != null and fundsLimit.businessType !=''" >
+	      	and BUSINESS_TYPE = #{fundsLimit.businessType,jdbcType=CHAR}
+	      </if>
+  		</where>
+  	</sql>
+</mapper>

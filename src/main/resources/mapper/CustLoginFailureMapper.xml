@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlebank.dao.CustLoginFailureDao">
+	<resultMap id="BaseResultMap" type="com.zlebank.model.CustLoginFailure">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+		<result column="IP" property="ip" jdbcType="VARCHAR" />
+		<result column="FAILURE_COUNT" property="failureCount"
+			jdbcType="DECIMAL" />
+		<result column="SESSION_ID" property="sessionId" jdbcType="VARCHAR" />
+		<result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="LOCK_TIME" property="lockTime" jdbcType="VARCHAR" />
+		<result column="CURRENT_FAIL_COUNT" property="currentFailCount"
+			jdbcType="DECIMAL" />
+		<result column="LOCK_STATE" property="lockState" jdbcType="CHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, USER_ID, IP, FAILURE_COUNT, SESSION_ID, CREATED_TIME, UPDATE_TIME,
+		LOCK_TIME,
+		CURRENT_FAIL_COUNT, LOCK_STATE
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from T_CUST_LOGIN_FAILURE
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<select id="selectByBusUniqCond" resultMap="BaseResultMap"
+		parameterType="com.zlebank.model.CustLoginFailure">
+		select
+		<include refid="Base_Column_List" />
+		from T_CUST_LOGIN_FAILURE
+		where USER_ID = #{userId,jdbcType=VARCHAR} and IP = #{ip,jdbcType=VARCHAR}
+		and SESSION_ID = #{sessionId,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from T_CUST_LOGIN_FAILURE
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.zlebank.model.CustLoginFailure">
+		insert into T_CUST_LOGIN_FAILURE (ID, USER_ID, IP,
+		FAILURE_COUNT, SESSION_ID, CREATED_TIME,
+		UPDATE_TIME, LOCK_TIME, CURRENT_FAIL_COUNT,
+		LOCK_STATE)
+		values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR},
+		#{ip,jdbcType=VARCHAR},
+		#{failureCount,jdbcType=DECIMAL}, #{sessionId,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP},
+		#{updateTime,jdbcType=TIMESTAMP}, #{lockTime,jdbcType=VARCHAR},
+		#{currentFailCount,jdbcType=DECIMAL},
+		#{lockState,jdbcType=CHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.zlebank.model.CustLoginFailure">
+		insert into T_CUST_LOGIN_FAILURE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="userId != null">
+				USER_ID,
+			</if>
+			<if test="ip != null">
+				IP,
+			</if>
+			<if test="failureCount != null">
+				FAILURE_COUNT,
+			</if>
+			<if test="sessionId != null">
+				SESSION_ID,
+			</if>
+			<if test="createdTime != null">
+				CREATED_TIME,
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME,
+			</if>
+			<if test="lockTime != null">
+				LOCK_TIME,
+			</if>
+			<if test="currentFailCount != null">
+				CURRENT_FAIL_COUNT,
+			</if>
+			<if test="lockState != null">
+				LOCK_STATE,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="ip != null">
+				#{ip,jdbcType=VARCHAR},
+			</if>
+			<if test="failureCount != null">
+				#{failureCount,jdbcType=DECIMAL},
+			</if>
+			<if test="sessionId != null">
+				#{sessionId,jdbcType=VARCHAR},
+			</if>
+			<if test="createdTime != null">
+				#{createdTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lockTime != null">
+				#{lockTime,jdbcType=VARCHAR},
+			</if>
+			<if test="currentFailCount != null">
+				#{currentFailCount,jdbcType=DECIMAL},
+			</if>
+			<if test="lockState != null">
+				#{lockState,jdbcType=CHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.CustLoginFailure">
+		update T_CUST_LOGIN_FAILURE
+		<set>
+			<if test="userId != null">
+				USER_ID = #{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="ip != null">
+				IP = #{ip,jdbcType=VARCHAR},
+			</if>
+			<if test="failureCount != null">
+				FAILURE_COUNT = #{failureCount,jdbcType=DECIMAL},
+			</if>
+			<if test="sessionId != null">
+				SESSION_ID = #{sessionId,jdbcType=VARCHAR},
+			</if>
+			<if test="createdTime != null">
+				CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="lockTime != null">
+				LOCK_TIME = #{lockTime,jdbcType=VARCHAR},
+			</if>
+			<if test="currentFailCount != null">
+				CURRENT_FAIL_COUNT = #{currentFailCount,jdbcType=DECIMAL},
+			</if>
+			<if test="lockState != null">
+				LOCK_STATE = #{lockState,jdbcType=CHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.zlebank.model.CustLoginFailure">
+		update T_CUST_LOGIN_FAILURE
+		set USER_ID = #{userId,jdbcType=VARCHAR},
+		IP = #{ip,jdbcType=VARCHAR},
+		FAILURE_COUNT = #{failureCount,jdbcType=DECIMAL},
+		SESSION_ID = #{sessionId,jdbcType=VARCHAR},
+		CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+		UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+		LOCK_TIME = #{lockTime,jdbcType=VARCHAR},
+		CURRENT_FAIL_COUNT = #{currentFailCount,jdbcType=DECIMAL},
+		LOCK_STATE = #{lockState,jdbcType=CHAR}
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+
+	<update id="updateOrderStatusByUpdateTime">
+		UPDATE
+		T_CUST_LOGIN_FAILURE
+		SET
+		LOCK_STATE =
+		#{newStatus,jdbcType=VARCHAR}
+		WHERE
+		LOCK_STATE =
+		#{orgStatus,jdbcType=VARCHAR} and
+		UPDATE_TIME&lt;=#{time,jdbcType=TIMESTAMP}
+	</update>
+
+</mapper>

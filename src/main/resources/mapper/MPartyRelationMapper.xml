@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlebank.dao.MPartyRelationDao" >
+  <resultMap id="BaseResultMap" type="com.zlebank.model.MPartyRelation" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="FROM_PARTY_ROLE_ID" property="fromPartyRoleId" jdbcType="VARCHAR" />
+    <result column="TO_PARTY_ROLE_ID" property="toPartyRoleId" jdbcType="VARCHAR" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="PERIOD_START" property="periodStart" jdbcType="TIMESTAMP" />
+    <result column="PERIOD_END" property="periodEnd" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, TYPE, FROM_PARTY_ROLE_ID, TO_PARTY_ROLE_ID, CREATED_TIME, PERIOD_START, PERIOD_END
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_M_PARTY_RELATIONSHIP
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_M_PARTY_RELATIONSHIP
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zlebank.model.MPartyRelation" >
+    insert into T_M_PARTY_RELATIONSHIP (ID, TYPE, FROM_PARTY_ROLE_ID, 
+      TO_PARTY_ROLE_ID, CREATED_TIME, PERIOD_START, 
+      PERIOD_END)
+    values (#{id,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{fromPartyRoleId,jdbcType=VARCHAR}, 
+      #{toPartyRoleId,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{periodStart,jdbcType=TIMESTAMP}, 
+      #{periodEnd,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zlebank.model.MPartyRelation" >
+    insert into T_M_PARTY_RELATIONSHIP
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="fromPartyRoleId != null" >
+        FROM_PARTY_ROLE_ID,
+      </if>
+      <if test="toPartyRoleId != null" >
+        TO_PARTY_ROLE_ID,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="periodStart != null" >
+        PERIOD_START,
+      </if>
+      <if test="periodEnd != null" >
+        PERIOD_END,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="fromPartyRoleId != null" >
+        #{fromPartyRoleId,jdbcType=VARCHAR},
+      </if>
+      <if test="toPartyRoleId != null" >
+        #{toPartyRoleId,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="periodStart != null" >
+        #{periodStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="periodEnd != null" >
+        #{periodEnd,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.MPartyRelation" >
+    update T_M_PARTY_RELATIONSHIP
+    <set >
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="fromPartyRoleId != null" >
+        FROM_PARTY_ROLE_ID = #{fromPartyRoleId,jdbcType=VARCHAR},
+      </if>
+      <if test="toPartyRoleId != null" >
+        TO_PARTY_ROLE_ID = #{toPartyRoleId,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="periodStart != null" >
+        PERIOD_START = #{periodStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="periodEnd != null" >
+        PERIOD_END = #{periodEnd,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.MPartyRelation" >
+    update T_M_PARTY_RELATIONSHIP
+    set TYPE = #{type,jdbcType=VARCHAR},
+      FROM_PARTY_ROLE_ID = #{fromPartyRoleId,jdbcType=VARCHAR},
+      TO_PARTY_ROLE_ID = #{toPartyRoleId,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      PERIOD_START = #{periodStart,jdbcType=TIMESTAMP},
+      PERIOD_END = #{periodEnd,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

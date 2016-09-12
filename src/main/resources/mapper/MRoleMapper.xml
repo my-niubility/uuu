@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlebank.dao.MRoleDao" >
+  <resultMap id="BaseResultMap" type="com.zlebank.model.MRole" >
+    <id column="ROLE_ID" property="roleId" jdbcType="VARCHAR" />
+    <result column="ROLE_NAME" property="roleName" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CREATER" property="creater" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ROLE_ID, ROLE_NAME, STATUS, CREATER, DESCRIPTION, CREATED_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_M_ROLE
+    where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_M_ROLE
+    where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+  </delete>
+
+  <select id="findRoleByUserName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    r.*
+    from T_M_ROLE r,T_M_LOGINACCOUNT_ROLE lr
+    where r.ROLE_ID = lr.ROLE_ID and lr.LOGINACCOUNT_ID = #{userName,jdbcType=VARCHAR}
+  </select>
+
+  <select id="findAllRoles" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_M_ROLE
+    
+  </select>
+
+  <select id="isExistRoleByRoleId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_M_ROLE
+    where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="isExistRoleByRoleName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_M_ROLE
+    where ROLE_NAME = #{roleName,jdbcType=VARCHAR}
+  </select>
+
+
+  <insert id="insert" parameterType="com.zlebank.model.MRole" >
+    insert into T_M_ROLE (ROLE_ID, ROLE_NAME, STATUS, 
+      CREATER, DESCRIPTION, CREATED_TIME
+      )
+    values (#{roleId,jdbcType=VARCHAR}, #{roleName,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{creater,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zlebank.model.MRole" >
+    insert into T_M_ROLE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        ROLE_ID,
+      </if>
+      <if test="roleName != null" >
+        ROLE_NAME,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="creater != null" >
+        CREATER,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null" >
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null" >
+        #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.MRole" >
+    update T_M_ROLE
+    <set >
+      <if test="roleName != null" >
+        ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null" >
+        CREATER = #{creater,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.MRole" >
+    update T_M_ROLE
+    set ROLE_NAME = #{roleName,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      CREATER = #{creater,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP}
+    where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+  </update>
+</mapper>

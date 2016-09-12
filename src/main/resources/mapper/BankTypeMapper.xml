@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlebank.dao.BankTypeDao" >
+  <resultMap id="BaseResultMap" type="com.zlebank.model.BankType" >
+    <id column="BANK_TYPE" property="bankType" jdbcType="VARCHAR" />
+    <result column="BANK_NAME" property="bankName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    BANK_TYPE, BANK_NAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_BANK_TYPE
+    where BANK_TYPE = #{bankType,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_BANK_TYPE
+    where BANK_TYPE = #{bankType,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zlebank.model.BankType" >
+    insert into T_BANK_TYPE (BANK_TYPE, BANK_NAME)
+    values (#{bankType,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zlebank.model.BankType" >
+    insert into T_BANK_TYPE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bankType != null" >
+        BANK_TYPE,
+      </if>
+      <if test="bankName != null" >
+        BANK_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bankType != null" >
+        #{bankType,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.BankType" >
+    update T_BANK_TYPE
+    <set >
+      <if test="bankName != null" >
+        BANK_NAME = #{bankName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where BANK_TYPE = #{bankType,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.BankType" >
+    update T_BANK_TYPE
+    set BANK_NAME = #{bankName,jdbcType=VARCHAR}
+    where BANK_TYPE = #{bankType,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 分页查询总数 --> 
+    <select id="findListPageCount" resultType="int" >
+	    select count(BANK_NAME) from T_BANK_TYPE
+	    <include refid="dynamicPageWhere" /> 
+  	</select>  
+  	
+  	<!-- 分页查询 -->
+	<select id="findListPage" resultMap="BaseResultMap" >
+		<choose>  
+            <when test=" pageVO.size&lt;0">  
+	    		<include refid="baseDynamicQuery" /> 
+            </when>  
+            <otherwise> 
+            	<include refid="baseDynamicQuery" />
+            	limit #{pageVO.startSize, jdbcType=INTEGER}, #{pageVO.size, jdbcType=INTEGER}  
+            </otherwise>  
+        </choose>
+  	</select>
+  	
+  	<sql id="baseDynamicQuery">
+		select * from T_BANK_TYPE
+		<include refid="dynamicPageWhere" /> 
+	</sql>  	
+  	<sql id="dynamicPageWhere">
+  		<where>
+  			1=1  	
+	      <if test="bankType.bankType != null and bankType.bankType !=''" >
+	      	and BANK_TYPE = #{bankType.bankType,jdbcType=VARCHAR}
+	      </if>
+	      <if test="bankType.bankName != null and bankType.bankName !=''" >
+	      	and BANK_NAME = #{bankType.bankName,jdbcType=VARCHAR}
+	      </if>
+	      
+  		</where>
+  	</sql>
+</mapper>

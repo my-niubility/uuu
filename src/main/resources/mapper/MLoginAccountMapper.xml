@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlebank.dao.MLoginAccountDao" >
+  <resultMap id="BaseResultMap" type="com.zlebank.model.MLoginAccount" >
+    <id column="ACCOUNT_ID" property="accountId" jdbcType="VARCHAR" />
+    <result column="LOGIN_NAME" property="loginName" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="PARTY_ID" property="partyId" jdbcType="VARCHAR" />
+    <result column="REAL_NAME" property="realName" jdbcType="VARCHAR" />
+    <result column="SALT" property="salt" jdbcType="VARCHAR" />
+    <result column="ROLE_ID" property="roleId" jdbcType="VARCHAR" />
+    <result column="USE_CA" property="useCa" jdbcType="VARCHAR" />
+    <result column="LOCK_STATUS" property="lockStatus" jdbcType="VARCHAR" />
+    <result column="ENABLE_STATUS" property="enableStatus" jdbcType="VARCHAR" />
+    <result column="LAST_UPDATE_PASSWORD_TIME" property="lastUpdatePasswordTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_LOGIN_LOCK_TIME" property="lastLoginLockTime" jdbcType="TIMESTAMP" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ACCOUNT_ID, LOGIN_NAME, PASSWORD, MOBILE, EMAIL, PARTY_ID, REAL_NAME, SALT, ROLE_ID, 
+    USE_CA, LOCK_STATUS, ENABLE_STATUS, LAST_UPDATE_PASSWORD_TIME, LAST_LOGIN_LOCK_TIME, 
+    DESCRIPTION, CREATE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_M_LOGIN_ACCOUNT
+    where ACCOUNT_ID = #{accountId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByUserName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_M_LOGIN_ACCOUNT
+    where LOGIN_NAME = #{userName,jdbcType=VARCHAR}
+  </select>
+  
+  <update id="modifyPass" parameterType="java.lang.String" >
+  	  update T_M_LOGIN_ACCOUNT
+   		 set PASSWORD = #{newPass,jdbcType=VARCHAR}
+    		where LOGIN_NAME = #{loginName,jdbcType=VARCHAR}
+  </update>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_M_LOGIN_ACCOUNT
+    where ACCOUNT_ID = #{accountId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zlebank.model.MLoginAccount" >
+    insert into T_M_LOGIN_ACCOUNT (ACCOUNT_ID, LOGIN_NAME, PASSWORD, 
+      MOBILE, EMAIL, PARTY_ID, 
+      REAL_NAME, SALT, ROLE_ID, 
+      USE_CA, LOCK_STATUS, ENABLE_STATUS, 
+      LAST_UPDATE_PASSWORD_TIME, LAST_LOGIN_LOCK_TIME, 
+      DESCRIPTION, CREATE_DATE)
+    values (#{accountId,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{partyId,jdbcType=VARCHAR}, 
+      #{realName,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, 
+      #{useCa,jdbcType=VARCHAR}, #{lockStatus,jdbcType=VARCHAR}, #{enableStatus,jdbcType=VARCHAR}, 
+      #{lastUpdatePasswordTime,jdbcType=TIMESTAMP}, #{lastLoginLockTime,jdbcType=TIMESTAMP}, 
+      #{description,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zlebank.model.MLoginAccount" >
+    insert into T_M_LOGIN_ACCOUNT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="accountId != null" >
+        ACCOUNT_ID,
+      </if>
+      <if test="loginName != null" >
+        LOGIN_NAME,
+      </if>
+      <if test="password != null" >
+        PASSWORD,
+      </if>
+      <if test="mobile != null" >
+        MOBILE,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="partyId != null" >
+        PARTY_ID,
+      </if>
+      <if test="realName != null" >
+        REAL_NAME,
+      </if>
+      <if test="salt != null" >
+        SALT,
+      </if>
+      <if test="roleId != null" >
+        ROLE_ID,
+      </if>
+      <if test="useCa != null" >
+        USE_CA,
+      </if>
+      <if test="lockStatus != null" >
+        LOCK_STATUS,
+      </if>
+      <if test="enableStatus != null" >
+        ENABLE_STATUS,
+      </if>
+      <if test="lastUpdatePasswordTime != null" >
+        LAST_UPDATE_PASSWORD_TIME,
+      </if>
+      <if test="lastLoginLockTime != null" >
+        LAST_LOGIN_LOCK_TIME,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="accountId != null" >
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null" >
+        #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="useCa != null" >
+        #{useCa,jdbcType=VARCHAR},
+      </if>
+      <if test="lockStatus != null" >
+        #{lockStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="enableStatus != null" >
+        #{enableStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatePasswordTime != null" >
+        #{lastUpdatePasswordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginLockTime != null" >
+        #{lastLoginLockTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.MLoginAccount" >
+    update T_M_LOGIN_ACCOUNT
+    <set >
+      <if test="loginName != null" >
+        LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        MOBILE = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="partyId != null" >
+        PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        REAL_NAME = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        SALT = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        ROLE_ID = #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="useCa != null" >
+        USE_CA = #{useCa,jdbcType=VARCHAR},
+      </if>
+      <if test="lockStatus != null" >
+        LOCK_STATUS = #{lockStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="enableStatus != null" >
+        ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdatePasswordTime != null" >
+        LAST_UPDATE_PASSWORD_TIME = #{lastUpdatePasswordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginLockTime != null" >
+        LAST_LOGIN_LOCK_TIME = #{lastLoginLockTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ACCOUNT_ID = #{accountId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.MLoginAccount" >
+    update T_M_LOGIN_ACCOUNT
+    set LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      MOBILE = #{mobile,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      PARTY_ID = #{partyId,jdbcType=VARCHAR},
+      REAL_NAME = #{realName,jdbcType=VARCHAR},
+      SALT = #{salt,jdbcType=VARCHAR},
+      ROLE_ID = #{roleId,jdbcType=VARCHAR},
+      USE_CA = #{useCa,jdbcType=VARCHAR},
+      LOCK_STATUS = #{lockStatus,jdbcType=VARCHAR},
+      ENABLE_STATUS = #{enableStatus,jdbcType=VARCHAR},
+      LAST_UPDATE_PASSWORD_TIME = #{lastUpdatePasswordTime,jdbcType=TIMESTAMP},
+      LAST_LOGIN_LOCK_TIME = #{lastLoginLockTime,jdbcType=TIMESTAMP},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP}
+    where ACCOUNT_ID = #{accountId,jdbcType=VARCHAR}
+  </update>
+  
+  
+   	<!-- 分页查询总数 --> 
+    <select id="findListPageCount" resultType="int" >
+	    select count(LOGIN_NAME) from T_M_LOGIN_ACCOUNT
+	    <include refid="dynamicPageWhere" /> 
+  	</select>  
+  
+  	<!-- 分页查询 -->
+	<select id="findListPage" resultMap="BaseResultMap" >
+		<choose>  
+            <when test=" pageVO.size&lt;0">  
+	    		<include refid="baseDynamicQuery" /> 
+            </when>  
+            <otherwise> 
+            	<include refid="baseDynamicQuery" />
+            	limit #{pageVO.startSize, jdbcType=INTEGER}, #{pageVO.size, jdbcType=INTEGER}  
+            </otherwise>  
+        </choose>
+  	</select>
+    	
+  	<sql id="baseDynamicQuery">
+		select * from T_M_LOGIN_ACCOUNT
+		<include refid="dynamicPageWhere" /> 
+		order by CREATE_DATE desc
+	</sql>  	
+  	<sql id="dynamicPageWhere">
+  		<where>
+  			1=1  	
+	      <if test="account.loginName != null and account.loginName !=''" >
+	      	and LOGIN_NAME = #{account.loginName,jdbcType=VARCHAR}
+	      </if>
+	      <if test="account.partyId != null and account.partyId !=''" >
+	      	and PARTY_ID = #{account.partyId,jdbcType=VARCHAR}
+	      </if>
+	      <if test="account.realName != null and account.realName !=''" >
+	        and REAL_NAME = #{account.realName,jdbcType=VARCHAR}
+	      </if>
+	      <if test="account.roleId != null and account.roleId !=''" >
+	      	and ROLE_ID = #{account.roleId,jdbcType=VARCHAR}
+	      </if>
+	      <if test="account.lockStatus != null and account.lockStatus !=''" >
+	        and LOCK_STATUS = #{account.lockStatus,jdbcType=VARCHAR}
+	      </if>
+	      <if test="account.enableStatus != null and account.enableStatus !=''" >
+	        and ENABLE_STATUS = #{account.enableStatus,jdbcType=VARCHAR}
+	      </if>
+	      <if test="account.createDate != null and account.createDate !=''" >
+	        and CREATE_DATE = #{account.createDate,jdbcType=TIMESTAMP}
+	      </if>
+  		</where>
+  	</sql>
+  
+  
+  
+</mapper>

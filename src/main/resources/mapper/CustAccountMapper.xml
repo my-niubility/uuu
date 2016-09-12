@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlebank.dao.CustAccountDao" >
+  <resultMap id="BaseResultMap" type="com.zlebank.model.CustAccount" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="CUST_ID" property="custId" jdbcType="VARCHAR" />
+    <result column="ACCOUNT_ID" property="accountId" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CUST_ID, ACCOUNT_ID, TYPE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_CUST_ACCOUNT
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAccIdByCustId" resultType="java.lang.String" parameterType="java.lang.String" >
+    select 
+	ACCOUNT_ID 
+    from T_CUST_ACCOUNT
+    where CUST_ID = #{custId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_CUST_ACCOUNT
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zlebank.model.CustAccount" >
+    insert into T_CUST_ACCOUNT (ID, CUST_ID, ACCOUNT_ID, 
+      TYPE)
+    values (#{id,jdbcType=VARCHAR}, #{custId,jdbcType=VARCHAR}, #{accountId,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zlebank.model.CustAccount" >
+    insert into T_CUST_ACCOUNT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="custId != null" >
+        CUST_ID,
+      </if>
+      <if test="accountId != null" >
+        ACCOUNT_ID,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null" >
+        #{custId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.CustAccount" >
+    update T_CUST_ACCOUNT
+    <set >
+      <if test="custId != null" >
+        CUST_ID = #{custId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null" >
+        ACCOUNT_ID = #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.CustAccount" >
+    update T_CUST_ACCOUNT
+    set CUST_ID = #{custId,jdbcType=VARCHAR},
+      ACCOUNT_ID = #{accountId,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectCustIdByAccId" resultType="java.lang.String" parameterType="java.lang.String" >
+    select 
+	CUST_ID 
+    from T_CUST_ACCOUNT
+    where ACCOUNT_ID = #{accountId,jdbcType=VARCHAR}
+  </select>
+</mapper>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlebank.dao.MRoleResPermDao" >
+  <resultMap id="BaseResultMap" type="com.zlebank.model.MRoleResPerm" >
+    <id column="ROLE_ID" property="roleId" jdbcType="VARCHAR" />
+    <id column="RESOURCES_ID" property="resourcesId" jdbcType="VARCHAR" />
+    <id column="PERMISSION_ID" property="permissionId" jdbcType="VARCHAR" />
+    <result column="PERMISSION_NAME" property="permissionName" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ROLE_ID, RESOURCES_ID, PERMISSION_ID, PERMISSION_NAME, DESCRIPTION, CREATED_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.zlebank.model.MRoleResPermKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_M_ROLE_RES_PERM
+    where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+      and RESOURCES_ID = #{resourcesId,jdbcType=VARCHAR}
+      and PERMISSION_ID = #{permissionId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findResPermList" resultMap="BaseResultMap"  parameterType="java.lang.String" >
+  	 select 
+    	<include refid="Base_Column_List" />
+     from T_M_ROLE_RES_PERM where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+  </select>
+  
+  <update id="updateByRoleResPerm" >
+    update T_M_ROLE_RES_PERM
+    <set >
+      <if test="newResId != null" >
+        RESOURCES_ID = #{newResId,jdbcType=VARCHAR},
+      </if>
+      <if test="newPermId != null" >
+        PERMISSION_ID = #{newPermId,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+          and RESOURCES_ID = #{resourcesId,jdbcType=VARCHAR}
+      	  and PERMISSION_ID = #{permissionId,jdbcType=VARCHAR}
+  </update>
+  
+  <delete id="deleteByPrimaryKey" parameterType="com.zlebank.model.MRoleResPermKey" >
+    delete from T_M_ROLE_RES_PERM
+    where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+      and RESOURCES_ID = #{resourcesId,jdbcType=VARCHAR}
+      and PERMISSION_ID = #{permissionId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zlebank.model.MRoleResPerm" >
+    insert into T_M_ROLE_RES_PERM (ROLE_ID, RESOURCES_ID, PERMISSION_ID, 
+      PERMISSION_NAME, DESCRIPTION, CREATED_TIME
+      )
+    values (#{roleId,jdbcType=VARCHAR}, #{resourcesId,jdbcType=VARCHAR}, #{permissionId,jdbcType=VARCHAR}, 
+      #{permissionName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zlebank.model.MRoleResPerm" >
+    insert into T_M_ROLE_RES_PERM
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        ROLE_ID,
+      </if>
+      <if test="resourcesId != null" >
+        RESOURCES_ID,
+      </if>
+      <if test="permissionId != null" >
+        PERMISSION_ID,
+      </if>
+      <if test="permissionName != null" >
+        PERMISSION_NAME,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="resourcesId != null" >
+        #{resourcesId,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionId != null" >
+        #{permissionId,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionName != null" >
+        #{permissionName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.MRoleResPerm" >
+    update T_M_ROLE_RES_PERM
+    <set >
+      <if test="permissionName != null" >
+        PERMISSION_NAME = #{permissionName,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+      and RESOURCES_ID = #{resourcesId,jdbcType=VARCHAR}
+      and PERMISSION_ID = #{permissionId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.MRoleResPerm" >
+    update T_M_ROLE_RES_PERM
+    set PERMISSION_NAME = #{permissionName,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP}
+    where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+      and RESOURCES_ID = #{resourcesId,jdbcType=VARCHAR}
+      and PERMISSION_ID = #{permissionId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlebank.dao.CustBankCardDao">
+	<resultMap id="BaseResultMap" type="com.zlebank.model.CustBankCard">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="CUST_ID" property="custId" jdbcType="VARCHAR" />
+		<result column="CARD_NAME" property="cardName" jdbcType="VARCHAR" />
+		<result column="CARD_NO" property="cardNo" jdbcType="VARCHAR" />
+		<result column="CARD_TYPE" property="cardType" jdbcType="CHAR" />
+		<result column="BANK_TYPE" property="bankType" jdbcType="VARCHAR" />
+		<result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="IS_SEND" property="isSend" jdbcType="CHAR" />
+		<result column="STATUS" property="status" jdbcType="CHAR" />
+		<result column="IS_PROTOCOL" property="isProtocol" jdbcType="CHAR" />
+		<result column="IS_CERT" property="isCert" jdbcType="CHAR" />
+		<result column="AUTH_NO" property="authNo" jdbcType="VARCHAR" />
+		<result column="BRANCH_NAME" property="branchName" jdbcType="VARCHAR" />
+		<result column="AUDIT_STATUS" property="auditStatus" jdbcType="CHAR" />
+		<result column="AUDIT_BINDING_STATUS" property="auditBindingStatus"
+			jdbcType="VARCHAR" />
+		<result column="FIRST_GEO" property="firstGeo" jdbcType="VARCHAR" />
+		<result column="SECOND_GEO" property="secondGeo" jdbcType="VARCHAR" />
+		<result column="CREATE_TYPE" property="createType" jdbcType="CHAR" />
+		<result column="IS_DEFAULT" property="isDefault" jdbcType="CHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, CUST_ID, CARD_NAME, CARD_NO, CARD_TYPE, BANK_TYPE,
+		CREATE_DATE,
+		UPDATE_TIME,
+		IS_SEND, STATUS, IS_PROTOCOL, IS_CERT,
+		AUTH_NO, BRANCH_NAME, AUDIT_STATUS,
+		AUDIT_BINDING_STATUS,
+		FIRST_GEO,
+		SECOND_GEO, CREATE_TYPE, IS_DEFAULT
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from T_CUST_BANK_CARD
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<select id="selectByCertInfo" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		select
+		<include refid="Base_Column_List" />
+		from T_CUST_BANK_CARD			
+		where CUST_ID = #{custId,jdbcType=VARCHAR}
+		<if test="auditBindingStatus != null">
+			and IS_CERT =#{isCert,jdbcType=VARCHAR}
+		</if>
+	</select>
+	<select id="selectByBindInfo" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		select
+		<include refid="Base_Column_List" />
+		from T_CUST_BANK_CARD
+		where CUST_ID = #{custId,jdbcType=VARCHAR} and
+		IS_DEFAULT =#{isDefault,jdbcType=VARCHAR}
+		and
+		IS_CERT =#{isCert,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		T_CUST_BANK_CARD
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.zlebank.model.CustBankCard">
+		insert into T_CUST_BANK_CARD
+		(ID, CUST_ID, CARD_NAME,
+		CARD_NO, CARD_TYPE, BANK_TYPE,
+		CREATE_DATE,
+		UPDATE_TIME, IS_SEND,
+		STATUS, IS_PROTOCOL, IS_CERT,
+		AUTH_NO,
+		BRANCH_NAME, AUDIT_STATUS,
+		AUDIT_BINDING_STATUS, FIRST_GEO, SECOND_GEO,
+		CREATE_TYPE, IS_DEFAULT)
+		values (#{id,jdbcType=VARCHAR},
+		#{custId,jdbcType=VARCHAR},
+		#{cardName,jdbcType=VARCHAR},
+		#{cardNo,jdbcType=VARCHAR}, #{cardType,jdbcType=CHAR},
+		#{bankType,jdbcType=VARCHAR},
+		#{createDate,jdbcType=TIMESTAMP},
+		#{updateTime,jdbcType=TIMESTAMP},
+		#{isSend,jdbcType=CHAR},
+		#{status,jdbcType=CHAR}, #{isProtocol,jdbcType=CHAR},
+		#{isCert,jdbcType=CHAR},
+		#{authNo,jdbcType=VARCHAR},
+		#{branchName,jdbcType=VARCHAR},
+		#{auditStatus,jdbcType=CHAR},
+		#{auditBindingStatus,jdbcType=VARCHAR}, #{firstGeo,jdbcType=VARCHAR},
+		#{secondGeo,jdbcType=VARCHAR},
+		#{createType,jdbcType=CHAR},
+		#{isDefault,jdbcType=CHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.zlebank.model.CustBankCard">
+		insert into T_CUST_BANK_CARD
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="custId != null">
+				CUST_ID,
+			</if>
+			<if test="cardName != null">
+				CARD_NAME,
+			</if>
+			<if test="cardNo != null">
+				CARD_NO,
+			</if>
+			<if test="cardType != null">
+				CARD_TYPE,
+			</if>
+			<if test="bankType != null">
+				BANK_TYPE,
+			</if>
+			<if test="createDate != null">
+				CREATE_DATE,
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME,
+			</if>
+			<if test="isSend != null">
+				IS_SEND,
+			</if>
+			<if test="status != null">
+				STATUS,
+			</if>
+			<if test="isProtocol != null">
+				IS_PROTOCOL,
+			</if>
+			<if test="isCert != null">
+				IS_CERT,
+			</if>
+			<if test="authNo != null">
+				AUTH_NO,
+			</if>
+			<if test="branchName != null">
+				BRANCH_NAME,
+			</if>
+			<if test="auditStatus != null">
+				AUDIT_STATUS,
+			</if>
+			<if test="auditBindingStatus != null">
+				AUDIT_BINDING_STATUS,
+			</if>
+			<if test="firstGeo != null">
+				FIRST_GEO,
+			</if>
+			<if test="secondGeo != null">
+				SECOND_GEO,
+			</if>
+			<if test="createType != null">
+				CREATE_TYPE,
+			</if>
+			<if test="isDefault != null">
+				IS_DEFAULT,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="custId != null">
+				#{custId,jdbcType=VARCHAR},
+			</if>
+			<if test="cardName != null">
+				#{cardName,jdbcType=VARCHAR},
+			</if>
+			<if test="cardNo != null">
+				#{cardNo,jdbcType=VARCHAR},
+			</if>
+			<if test="cardType != null">
+				#{cardType,jdbcType=CHAR},
+			</if>
+			<if test="bankType != null">
+				#{bankType,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				#{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isSend != null">
+				#{isSend,jdbcType=CHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=CHAR},
+			</if>
+			<if test="isProtocol != null">
+				#{isProtocol,jdbcType=CHAR},
+			</if>
+			<if test="isCert != null">
+				#{isCert,jdbcType=CHAR},
+			</if>
+			<if test="authNo != null">
+				#{authNo,jdbcType=VARCHAR},
+			</if>
+			<if test="branchName != null">
+				#{branchName,jdbcType=VARCHAR},
+			</if>
+			<if test="auditStatus != null">
+				#{auditStatus,jdbcType=CHAR},
+			</if>
+			<if test="auditBindingStatus != null">
+				#{auditBindingStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="firstGeo != null">
+				#{firstGeo,jdbcType=VARCHAR},
+			</if>
+			<if test="secondGeo != null">
+				#{secondGeo,jdbcType=VARCHAR},
+			</if>
+			<if test="createType != null">
+				#{createType,jdbcType=CHAR},
+			</if>
+			<if test="isDefault != null">
+				#{isDefault,jdbcType=CHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.CustBankCard">
+		update T_CUST_BANK_CARD
+		<set>
+			<if test="custId != null">
+				CUST_ID = #{custId,jdbcType=VARCHAR},
+			</if>
+			<if test="cardName != null">
+				CARD_NAME = #{cardName,jdbcType=VARCHAR},
+			</if>
+			<if test="cardNo != null">
+				CARD_NO = #{cardNo,jdbcType=VARCHAR},
+			</if>
+			<if test="cardType != null">
+				CARD_TYPE = #{cardType,jdbcType=CHAR},
+			</if>
+			<if test="bankType != null">
+				BANK_TYPE = #{bankType,jdbcType=VARCHAR},
+			</if>
+			<if test="createDate != null">
+				CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isSend != null">
+				IS_SEND = #{isSend,jdbcType=CHAR},
+			</if>
+			<if test="status != null">
+				STATUS = #{status,jdbcType=CHAR},
+			</if>
+			<if test="isProtocol != null">
+				IS_PROTOCOL = #{isProtocol,jdbcType=CHAR},
+			</if>
+			<if test="isCert != null">
+				IS_CERT = #{isCert,jdbcType=CHAR},
+			</if>
+			<if test="authNo != null">
+				AUTH_NO = #{authNo,jdbcType=VARCHAR},
+			</if>
+			<if test="branchName != null">
+				BRANCH_NAME = #{branchName,jdbcType=VARCHAR},
+			</if>
+			<if test="auditStatus != null">
+				AUDIT_STATUS = #{auditStatus,jdbcType=CHAR},
+			</if>
+			<if test="auditBindingStatus != null">
+				AUDIT_BINDING_STATUS =
+				#{auditBindingStatus,jdbcType=VARCHAR},
+			</if>
+			<if test="firstGeo != null">
+				FIRST_GEO = #{firstGeo,jdbcType=VARCHAR},
+			</if>
+			<if test="secondGeo != null">
+				SECOND_GEO = #{secondGeo,jdbcType=VARCHAR},
+			</if>
+			<if test="createType != null">
+				CREATE_TYPE = #{createType,jdbcType=CHAR},
+			</if>
+			<if test="isDefault != null">
+				IS_DEFAULT = #{isDefault,jdbcType=CHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.zlebank.model.CustBankCard">
+		update
+		T_CUST_BANK_CARD
+		set CUST_ID = #{custId,jdbcType=VARCHAR},
+		CARD_NAME =
+		#{cardName,jdbcType=VARCHAR},
+		CARD_NO = #{cardNo,jdbcType=VARCHAR},
+		CARD_TYPE = #{cardType,jdbcType=CHAR},
+		BANK_TYPE =
+		#{bankType,jdbcType=VARCHAR},
+		CREATE_DATE =
+		#{createDate,jdbcType=TIMESTAMP},
+		UPDATE_TIME =
+		#{updateTime,jdbcType=TIMESTAMP},
+		IS_SEND = #{isSend,jdbcType=CHAR},
+		STATUS = #{status,jdbcType=CHAR},
+		IS_PROTOCOL =
+		#{isProtocol,jdbcType=CHAR},
+		IS_CERT = #{isCert,jdbcType=CHAR},
+		AUTH_NO
+		= #{authNo,jdbcType=VARCHAR},
+		BRANCH_NAME =
+		#{branchName,jdbcType=VARCHAR},
+		AUDIT_STATUS =
+		#{auditStatus,jdbcType=CHAR},
+		AUDIT_BINDING_STATUS =
+		#{auditBindingStatus,jdbcType=VARCHAR},
+		FIRST_GEO =
+		#{firstGeo,jdbcType=VARCHAR},
+		SECOND_GEO =
+		#{secondGeo,jdbcType=VARCHAR},
+		CREATE_TYPE =
+		#{createType,jdbcType=CHAR},
+		IS_DEFAULT = #{isDefault,jdbcType=CHAR}
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	
+	
+	<!-- 分页查询总数 --> 
+    <select id="findListPageCount" resultType="int" >
+	    select count(ID) from T_CUST_BANK_CARD
+	    <include refid="dynamicPageWhere" /> 
+  	</select>  
+  	
+  	<!-- 分页查询 -->
+	<select id="findListPage" resultMap="BaseResultMap" >
+		<choose>  
+            <when test=" pageVO.size&lt;0">  
+	    		<include refid="baseDynamicQuery" /> 
+            </when>  
+            <otherwise> 
+            	<include refid="baseDynamicQuery" />
+            	limit #{pageVO.startSize, jdbcType=INTEGER}, #{pageVO.size, jdbcType=INTEGER}  
+            </otherwise>  
+        </choose>
+  	</select>
+  	
+  	<sql id="baseDynamicQuery">
+		select * from T_CUST_BANK_CARD
+		<include refid="dynamicPageWhere" /> 
+		order by ID desc
+	</sql>  	
+  	<sql id="dynamicPageWhere">
+  		<where>
+  			1=1  	
+	      <if test="custBank.custId != null and custBank.custId !=''" >
+	      	and CUST_ID = #{custBank.custId,jdbcType=VARCHAR}
+	      </if>
+	      <if test="custBank.cardName != null and custBank.cardName !=''" >
+	      	and CARD_NAME = #{custBank.cardName,jdbcType=VARCHAR}
+	      </if>
+	      <if test="custBank.cardNo != null and custBank.cardNo !=''" >
+	      	and CARD_NO = #{custBank.cardNo,jdbcType=VARCHAR}
+	      </if>
+  		</where>
+  	</sql>
+  	<select id="selectByCustId" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from T_CUST_BANK_CARD			
+		where 1=1
+		<if test="custId != null and custId !=''">
+			and CUST_ID = #{custId,jdbcType=VARCHAR}
+		</if>
+	</select>
+  	
+</mapper>

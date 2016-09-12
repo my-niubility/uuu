@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlebank.dao.FtpParameterDao" >
+  <resultMap id="BaseResultMap" type="com.zlebank.model.FtpParameter" >
+    <id column="MERCHANT_ID" property="merchantId" jdbcType="VARCHAR" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="IP" property="ip" jdbcType="VARCHAR" />
+    <result column="PORT" property="port" jdbcType="INTEGER" />
+    <result column="PATH" property="path" jdbcType="VARCHAR" />
+    <result column="LOCAL_PTAH" property="localPtah" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    MERCHANT_ID, USER_NAME, PASSWORD, IP, PORT, PATH, LOCAL_PTAH
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from T_FTP_PARAMETER
+    where MERCHANT_ID = #{merchantId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_FTP_PARAMETER
+    where MERCHANT_ID = #{merchantId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zlebank.model.FtpParameter" >
+    insert into T_FTP_PARAMETER (MERCHANT_ID, USER_NAME, PASSWORD, 
+      IP, PORT, PATH, LOCAL_PTAH
+      )
+    values (#{merchantId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{ip,jdbcType=VARCHAR}, #{port,jdbcType=INTEGER}, #{path,jdbcType=VARCHAR}, #{localPtah,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zlebank.model.FtpParameter" >
+    insert into T_FTP_PARAMETER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="merchantId != null" >
+        MERCHANT_ID,
+      </if>
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+      <if test="password != null" >
+        PASSWORD,
+      </if>
+      <if test="ip != null" >
+        IP,
+      </if>
+      <if test="port != null" >
+        PORT,
+      </if>
+      <if test="path != null" >
+        PATH,
+      </if>
+      <if test="localPtah != null" >
+        LOCAL_PTAH,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="merchantId != null" >
+        #{merchantId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="port != null" >
+        #{port,jdbcType=INTEGER},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="localPtah != null" >
+        #{localPtah,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.FtpParameter" >
+    update T_FTP_PARAMETER
+    <set >
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        IP = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="port != null" >
+        PORT = #{port,jdbcType=INTEGER},
+      </if>
+      <if test="path != null" >
+        PATH = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="localPtah != null" >
+        LOCAL_PTAH = #{localPtah,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MERCHANT_ID = #{merchantId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.FtpParameter" >
+    update T_FTP_PARAMETER
+    set USER_NAME = #{userName,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      IP = #{ip,jdbcType=VARCHAR},
+      PORT = #{port,jdbcType=INTEGER},
+      PATH = #{path,jdbcType=VARCHAR},
+      LOCAL_PTAH = #{localPtah,jdbcType=VARCHAR}
+    where MERCHANT_ID = #{merchantId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zlebank.dao.CustAgreementDao" >
+  <resultMap id="BaseResultMap" type="com.zlebank.model.CustAgreement" >
+    <id column="AGRT_ID" property="agrtId" jdbcType="VARCHAR" />
+    <result column="CUST_ID" property="custId" jdbcType="VARCHAR" />
+    <result column="AGRT_TYPE" property="agrtType" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.zlebank.model.CustAgreement" extends="BaseResultMap" >
+    <result column="AGRT_CONTENT" property="agrtContent" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    AGRT_ID, CUST_ID, AGRT_TYPE
+  </sql>
+  <sql id="Blob_Column_List" >
+    AGRT_CONTENT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from T_CUST_AGREEMENT
+    where AGRT_ID = #{agrtId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByCustId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from T_CUST_AGREEMENT
+    where CUST_ID = #{custId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByAgrtType" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from T_CUST_AGREEMENT
+    where AGRT_TYPE = #{agrtType,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from T_CUST_AGREEMENT
+    where AGRT_ID = #{agrtId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zlebank.model.CustAgreement" >
+    insert into T_CUST_AGREEMENT (AGRT_ID, CUST_ID, AGRT_TYPE, 
+      AGRT_CONTENT)
+    values (#{agrtId,jdbcType=VARCHAR}, #{custId,jdbcType=VARCHAR}, #{agrtType,jdbcType=CHAR}, 
+      #{agrtContent,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zlebank.model.CustAgreement" >
+    insert into T_CUST_AGREEMENT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="agrtId != null" >
+        AGRT_ID,
+      </if>
+      <if test="custId != null" >
+        CUST_ID,
+      </if>
+      <if test="agrtType != null" >
+        AGRT_TYPE,
+      </if>
+      <if test="agrtContent != null" >
+        AGRT_CONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="agrtId != null" >
+        #{agrtId,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null" >
+        #{custId,jdbcType=VARCHAR},
+      </if>
+      <if test="agrtType != null" >
+        #{agrtType,jdbcType=CHAR},
+      </if>
+      <if test="agrtContent != null" >
+        #{agrtContent,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.CustAgreement" >
+    update T_CUST_AGREEMENT
+    <set >
+      <if test="custId != null" >
+        CUST_ID = #{custId,jdbcType=VARCHAR},
+      </if>
+      <if test="agrtType != null" >
+        AGRT_TYPE = #{agrtType,jdbcType=CHAR},
+      </if>
+      <if test="agrtContent != null" >
+        AGRT_CONTENT = #{agrtContent,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where AGRT_ID = #{agrtId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zlebank.model.CustAgreement" >
+    update T_CUST_AGREEMENT
+    set CUST_ID = #{custId,jdbcType=VARCHAR},
+      AGRT_TYPE = #{agrtType,jdbcType=CHAR},
+      AGRT_CONTENT = #{agrtContent,jdbcType=LONGVARBINARY}
+    where AGRT_ID = #{agrtId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.CustAgreement" >
+    update T_CUST_AGREEMENT
+    set CUST_ID = #{custId,jdbcType=VARCHAR},
+      AGRT_TYPE = #{agrtType,jdbcType=CHAR}
+    where AGRT_ID = #{agrtId,jdbcType=VARCHAR}
+  </update>
+</mapper>
