@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zlebank.dao.MPartyRoleDao" >
-  <resultMap id="BaseResultMap" type="com.zlebank.model.MPartyRole" >
+<mapper namespace="com.nbl.dao.MPartyRoleDao" >
+  <resultMap id="BaseResultMap" type="com.nbl.model.MPartyRole" >
     <id column="ID" property="id" jdbcType="VARCHAR" />
     <result column="PARTY_ID" property="partyId" jdbcType="VARCHAR" />
     <result column="TYPE" property="type" jdbcType="VARCHAR" />
@@ -22,7 +22,7 @@
     delete from T_M_PARTY_ROLE
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.zlebank.model.MPartyRole" >
+  <insert id="insert" parameterType="com.nbl.model.MPartyRole" >
     insert into T_M_PARTY_ROLE (ID, PARTY_ID, TYPE, 
       CREATED_TIME, PERIOD_START, PERIOD_END
       )
@@ -30,7 +30,7 @@
       #{createdTime,jdbcType=TIMESTAMP}, #{periodStart,jdbcType=TIMESTAMP}, #{periodEnd,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zlebank.model.MPartyRole" >
+  <insert id="insertSelective" parameterType="com.nbl.model.MPartyRole" >
     insert into T_M_PARTY_ROLE
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -73,7 +73,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.MPartyRole" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.nbl.model.MPartyRole" >
     update T_M_PARTY_ROLE
     <set >
       <if test="partyId != null" >
@@ -94,7 +94,7 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.MPartyRole" >
+  <update id="updateByPrimaryKey" parameterType="com.nbl.model.MPartyRole" >
     update T_M_PARTY_ROLE
     set PARTY_ID = #{partyId,jdbcType=VARCHAR},
       TYPE = #{type,jdbcType=VARCHAR},

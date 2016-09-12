@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zlebank.dao.CustPermissionDao" >
-  <resultMap id="BaseResultMap" type="com.zlebank.model.CustPermission" >
+<mapper namespace="com.nbl.dao.CustPermissionDao" >
+  <resultMap id="BaseResultMap" type="com.nbl.model.CustPermission" >
     <result column="TOKEN" property="token" jdbcType="VARCHAR" />
     <result column="URL" property="url" jdbcType="VARCHAR" />
     <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
@@ -10,7 +10,7 @@
     <result column="PARENT_ID" property="parentId" jdbcType="VARCHAR" />
     <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
   </resultMap>
-  <insert id="insert" parameterType="com.zlebank.model.CustPermission" >
+  <insert id="insert" parameterType="com.nbl.model.CustPermission" >
     insert into T_CUST_PERMISSION (TOKEN, URL, CREATED_TIME, 
       NAME, SEQUENCE, PARENT_ID, 
       DESCRIPTION)
@@ -18,7 +18,7 @@
       #{name,jdbcType=VARCHAR}, #{sequence,jdbcType=DECIMAL}, #{parentId,jdbcType=VARCHAR}, 
       #{description,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.zlebank.model.CustPermission" >
+  <insert id="insertSelective" parameterType="com.nbl.model.CustPermission" >
     insert into T_CUST_PERMISSION
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="token != null" >

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zlebank.dao.CustEntAuditDao" >
-  <resultMap id="BaseResultMap" type="com.zlebank.model.CustEntAudit" >
+<mapper namespace="com.nbl.dao.CustEntAuditDao" >
+  <resultMap id="BaseResultMap" type="com.nbl.model.CustEntAudit" >
     <id column="ID" property="id" jdbcType="VARCHAR" />
     <result column="CUST_ID" property="custId" jdbcType="VARCHAR" />
     <result column="ENTERPRISE_CHANGE_ID" property="enterpriseChangeId" jdbcType="VARCHAR" />
@@ -26,7 +26,7 @@
     delete from T_CUST_ENT_AUDIT
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.zlebank.model.CustEntAudit" >
+  <insert id="insert" parameterType="com.nbl.model.CustEntAudit" >
     insert into T_CUST_ENT_AUDIT (ID, CUST_ID, ENTERPRISE_CHANGE_ID, 
       TYPE, PASSED, CREATED_TIME, 
       AUDIT_CUST_ID, IS_MODIFY, DESCRIPTION
@@ -36,7 +36,7 @@
       #{auditCustId,jdbcType=VARCHAR}, #{isModify,jdbcType=DECIMAL}, #{description,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zlebank.model.CustEntAudit" >
+  <insert id="insertSelective" parameterType="com.nbl.model.CustEntAudit" >
     insert into T_CUST_ENT_AUDIT
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -97,7 +97,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.CustEntAudit" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.nbl.model.CustEntAudit" >
     update T_CUST_ENT_AUDIT
     <set >
       <if test="custId != null" >
@@ -127,7 +127,7 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.CustEntAudit" >
+  <update id="updateByPrimaryKey" parameterType="com.nbl.model.CustEntAudit" >
     update T_CUST_ENT_AUDIT
     set CUST_ID = #{custId,jdbcType=VARCHAR},
       ENTERPRISE_CHANGE_ID = #{enterpriseChangeId,jdbcType=VARCHAR},

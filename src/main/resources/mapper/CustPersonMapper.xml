@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zlebank.dao.CustPersonDao" >
-  <resultMap id="BaseResultMap" type="com.zlebank.model.CustPerson" >
+<mapper namespace="com.nbl.dao.CustPersonDao" >
+  <resultMap id="BaseResultMap" type="com.nbl.model.CustPerson" >
     <id column="ID" property="id" jdbcType="VARCHAR" />
     <result column="PAY_PASSWORD" property="payPassword" jdbcType="VARCHAR" />
     <result column="REGISTERED_TYPE" property="registeredType" jdbcType="VARCHAR" />
@@ -47,7 +47,7 @@
     delete from T_CUST_PERSON
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.zlebank.model.CustPerson" >
+  <insert id="insert" parameterType="com.nbl.model.CustPerson" >
     insert into T_CUST_PERSON (ID, PAY_PASSWORD, REGISTERED_TYPE, 
       NAME, CREDENTIALS_TYPE, IDENTITY_CARD_NUMBER, 
       CERT_EXPIRY_DATE, COUNTRY_ID, IP, 
@@ -69,7 +69,7 @@
       #{certStatus,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{regChanCode,jdbcType=CHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zlebank.model.CustPerson" >
+  <insert id="insertSelective" parameterType="com.nbl.model.CustPerson" >
     insert into T_CUST_PERSON
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -238,7 +238,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.CustPerson" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.nbl.model.CustPerson" >
     update T_CUST_PERSON
     <set >
       <if test="payPassword != null" >
@@ -322,7 +322,7 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.CustPerson" >
+  <update id="updateByPrimaryKey" parameterType="com.nbl.model.CustPerson" >
     update T_CUST_PERSON
     set PAY_PASSWORD = #{payPassword,jdbcType=VARCHAR},
       REGISTERED_TYPE = #{registeredType,jdbcType=VARCHAR},
@@ -354,7 +354,7 @@
   </update>
   
   
-  <resultMap id="ALLResultMap" type="com.zlebank.model.PersonAndUser" >
+  <resultMap id="ALLResultMap" type="com.nbl.model.PersonAndUser" >
 	    <id column="ID" property="id" jdbcType="VARCHAR" />
 	    <result column="LOGIN_NAME" property="loginName" jdbcType="VARCHAR" />
 	    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />

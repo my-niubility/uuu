@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zlebank.dao.RolePermissionDao" >
-  <resultMap id="BaseResultMap" type="com.zlebank.model.RolePermission" >
+<mapper namespace="com.nbl.dao.RolePermissionDao" >
+  <resultMap id="BaseResultMap" type="com.nbl.model.RolePermission" >
     <result column="PERMISSION_ID" property="permissionId" jdbcType="VARCHAR" />
     <result column="ROLE_ID" property="roleId" jdbcType="VARCHAR" />
   </resultMap>
-  <insert id="insert" parameterType="com.zlebank.model.RolePermission" >
+  <insert id="insert" parameterType="com.nbl.model.RolePermission" >
     insert into T_ROLE_PERMISSION (PERMISSION_ID, ROLE_ID)
     values (#{permissionId,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.zlebank.model.RolePermission" >
+  <insert id="insertSelective" parameterType="com.nbl.model.RolePermission" >
     insert into T_ROLE_PERMISSION
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="permissionId != null" >

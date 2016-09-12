@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zlebank.dao.CustUserDao" >
-  <resultMap id="BaseResultMap" type="com.zlebank.model.CustUser" >
+<mapper namespace="com.nbl.dao.CustUserDao" >
+  <resultMap id="BaseResultMap" type="com.nbl.model.CustUser" >
     <id column="ID" property="id" jdbcType="VARCHAR" />
     <result column="LOGIN_NAME" property="loginName" jdbcType="VARCHAR" />
     <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
@@ -41,7 +41,7 @@
     delete from T_CUST_USER
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.zlebank.model.CustUser" >
+  <insert id="insert" parameterType="com.nbl.model.CustUser" >
     insert into T_CUST_USER (ID, LOGIN_NAME, PASSWORD, 
       MOBILE, EMAIL, EMAIL_ACTIVATE_CODE, 
       ENABLED, PERIOD_START, PERIOD_END, 
@@ -55,7 +55,7 @@
       #{lastUpdatePasswordTime,jdbcType=TIMESTAMP}, #{lastLoginLockTime,jdbcType=TIMESTAMP}, 
       #{description,jdbcType=VARCHAR}, #{regChanCode,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.zlebank.model.CustUser" >
+  <insert id="insertSelective" parameterType="com.nbl.model.CustUser" >
     insert into T_CUST_USER
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -164,7 +164,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.CustUser" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.nbl.model.CustUser" >
     update T_CUST_USER
     <set >
       <if test="loginName != null" >
@@ -218,7 +218,7 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.CustUser" >
+  <update id="updateByPrimaryKey" parameterType="com.nbl.model.CustUser" >
     update T_CUST_USER
     set LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
       PASSWORD = #{password,jdbcType=VARCHAR},

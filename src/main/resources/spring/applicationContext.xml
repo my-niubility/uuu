@@ -14,9 +14,9 @@
 	default-lazy-init="false">
 
 	<description>Spring</description>
-	<context:component-scan base-package="com.zlebank.services"></context:component-scan>
-	<context:component-scan base-package="com.zlebank.app"></context:component-scan>
-	<context:component-scan base-package="com.zlebank.utils"></context:component-scan>
+	<context:component-scan base-package="com.nbl.services"></context:component-scan>
+	<context:component-scan base-package="com.nbl.app"></context:component-scan>
+	<context:component-scan base-package="com.nbl.utils"></context:component-scan>
 	
 	<bean id="cacheManagerFactory" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">  
         <property name="configLocation" value="classpath:spring/ehcache.xml"/>  
@@ -27,5 +27,5 @@
 	<import resource="classpath*:/spring/quartz-job.xml" />
 	
 	<aop:aspectj-autoproxy proxy-target-class="true" />
-	<bean class="com.zlebank.utils.LogUtil" />
+	<bean class="com.nbl.utils.LogUtil" />
 </beans>

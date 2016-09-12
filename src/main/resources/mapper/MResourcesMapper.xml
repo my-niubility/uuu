@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zlebank.dao.MResourcesDao" >
-  <resultMap id="BaseResultMap" type="com.zlebank.model.MResources" >
+<mapper namespace="com.nbl.dao.MResourcesDao" >
+  <resultMap id="BaseResultMap" type="com.nbl.model.MResources" >
     <id column="RESOURCES_ID" property="resourcesId" jdbcType="VARCHAR" />
     <result column="RESOURCES_NAME" property="resourcesName" jdbcType="VARCHAR" />
     <result column="RESOURCES_TYPE" property="resourcesType" jdbcType="VARCHAR" />
@@ -35,7 +35,7 @@
     delete from T_M_RESOURCES
     where RESOURCES_ID = #{resourcesId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.zlebank.model.MResources" >
+  <insert id="insert" parameterType="com.nbl.model.MResources" >
     insert into T_M_RESOURCES (RESOURCES_ID, RESOURCES_NAME, RESOURCES_TYPE, 
       PRIORITY, PARENT_ID, STATUS, 
       DESCRIPTION, CREATED_TIME)
@@ -43,7 +43,7 @@
       #{priority,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
       #{description,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.zlebank.model.MResources" >
+  <insert id="insertSelective" parameterType="com.nbl.model.MResources" >
     insert into T_M_RESOURCES
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="resourcesId != null" >
@@ -98,7 +98,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.MResources" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.nbl.model.MResources" >
     update T_M_RESOURCES
     <set >
       <if test="resourcesName != null" >
@@ -125,7 +125,7 @@
     </set>
     where RESOURCES_ID = #{resourcesId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.MResources" >
+  <update id="updateByPrimaryKey" parameterType="com.nbl.model.MResources" >
     update T_M_RESOURCES
     set RESOURCES_NAME = #{resourcesName,jdbcType=VARCHAR},
       RESOURCES_TYPE = #{resourcesType,jdbcType=VARCHAR},

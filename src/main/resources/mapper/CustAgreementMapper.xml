@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zlebank.dao.CustAgreementDao" >
-  <resultMap id="BaseResultMap" type="com.zlebank.model.CustAgreement" >
+<mapper namespace="com.nbl.dao.CustAgreementDao" >
+  <resultMap id="BaseResultMap" type="com.nbl.model.CustAgreement" >
     <id column="AGRT_ID" property="agrtId" jdbcType="VARCHAR" />
     <result column="CUST_ID" property="custId" jdbcType="VARCHAR" />
     <result column="AGRT_TYPE" property="agrtType" jdbcType="CHAR" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.zlebank.model.CustAgreement" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.nbl.model.CustAgreement" extends="BaseResultMap" >
     <result column="AGRT_CONTENT" property="agrtContent" jdbcType="LONGVARBINARY" />
   </resultMap>
   <sql id="Base_Column_List" >
@@ -43,13 +43,13 @@
     delete from T_CUST_AGREEMENT
     where AGRT_ID = #{agrtId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.zlebank.model.CustAgreement" >
+  <insert id="insert" parameterType="com.nbl.model.CustAgreement" >
     insert into T_CUST_AGREEMENT (AGRT_ID, CUST_ID, AGRT_TYPE, 
       AGRT_CONTENT)
     values (#{agrtId,jdbcType=VARCHAR}, #{custId,jdbcType=VARCHAR}, #{agrtType,jdbcType=CHAR}, 
       #{agrtContent,jdbcType=LONGVARBINARY})
   </insert>
-  <insert id="insertSelective" parameterType="com.zlebank.model.CustAgreement" >
+  <insert id="insertSelective" parameterType="com.nbl.model.CustAgreement" >
     insert into T_CUST_AGREEMENT
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="agrtId != null" >
@@ -80,7 +80,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.CustAgreement" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.nbl.model.CustAgreement" >
     update T_CUST_AGREEMENT
     <set >
       <if test="custId != null" >
@@ -95,14 +95,14 @@
     </set>
     where AGRT_ID = #{agrtId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zlebank.model.CustAgreement" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.nbl.model.CustAgreement" >
     update T_CUST_AGREEMENT
     set CUST_ID = #{custId,jdbcType=VARCHAR},
       AGRT_TYPE = #{agrtType,jdbcType=CHAR},
       AGRT_CONTENT = #{agrtContent,jdbcType=LONGVARBINARY}
     where AGRT_ID = #{agrtId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.CustAgreement" >
+  <update id="updateByPrimaryKey" parameterType="com.nbl.model.CustAgreement" >
     update T_CUST_AGREEMENT
     set CUST_ID = #{custId,jdbcType=VARCHAR},
       AGRT_TYPE = #{agrtType,jdbcType=CHAR}

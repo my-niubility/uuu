@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zlebank.dao.MCustAddAduitDao" >
-  <resultMap id="BaseResultMap" type="com.zlebank.model.MCustAddAduit" >
+<mapper namespace="com.nbl.dao.MCustAddAduitDao" >
+  <resultMap id="BaseResultMap" type="com.nbl.model.MCustAddAduit" >
     <id column="ID" property="id" jdbcType="VARCHAR" />
     <result column="CUST_ID" property="custId" jdbcType="VARCHAR" />
     <result column="PASSED" property="passed" jdbcType="DECIMAL" />
@@ -10,7 +10,7 @@
     <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
     <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.zlebank.model.MCustAddAduit" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.nbl.model.MCustAddAduit" extends="BaseResultMap" >
     <result column="NEWOBJECT" property="newobject" jdbcType="LONGVARBINARY" />
   </resultMap>
   <sql id="Base_Column_List" >
@@ -31,7 +31,7 @@
     delete from T_M_CUST_ADD_AUDIT
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.zlebank.model.MCustAddAduit" >
+  <insert id="insert" parameterType="com.nbl.model.MCustAddAduit" >
     insert into T_M_CUST_ADD_AUDIT (ID, CUST_ID, PASSED, 
       AUDIT_USER_ID, IS_MODIFY, DESCRIPTION, 
       CREATED_TIME, NEWOBJECT)
@@ -39,7 +39,7 @@
       #{auditUserId,jdbcType=VARCHAR}, #{isModify,jdbcType=DECIMAL}, #{description,jdbcType=VARCHAR}, 
       #{createdTime,jdbcType=TIMESTAMP}, #{newobject,jdbcType=LONGVARBINARY})
   </insert>
-  <insert id="insertSelective" parameterType="com.zlebank.model.MCustAddAduit" >
+  <insert id="insertSelective" parameterType="com.nbl.model.MCustAddAduit" >
     insert into T_M_CUST_ADD_AUDIT
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -94,7 +94,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.MCustAddAduit" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.nbl.model.MCustAddAduit" >
     update T_M_CUST_ADD_AUDIT
     <set >
       <if test="custId != null" >
@@ -121,7 +121,7 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zlebank.model.MCustAddAduit" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.nbl.model.MCustAddAduit" >
     update T_M_CUST_ADD_AUDIT
     set CUST_ID = #{custId,jdbcType=VARCHAR},
       PASSED = #{passed,jdbcType=DECIMAL},
@@ -132,7 +132,7 @@
       NEWOBJECT = #{newobject,jdbcType=LONGVARBINARY}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.MCustAddAduit" >
+  <update id="updateByPrimaryKey" parameterType="com.nbl.model.MCustAddAduit" >
     update T_M_CUST_ADD_AUDIT
     set CUST_ID = #{custId,jdbcType=VARCHAR},
       PASSED = #{passed,jdbcType=DECIMAL},

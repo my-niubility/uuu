@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zlebank.dao.CustCertDao" >
-  <resultMap id="BaseResultMap" type="com.zlebank.model.CustCert" >
+<mapper namespace="com.nbl.dao.CustCertDao" >
+  <resultMap id="BaseResultMap" type="com.nbl.model.CustCert" >
     <id column="ID" property="id" jdbcType="VARCHAR" />
     <result column="CREDENTIALS_TYPE" property="credentialsType" jdbcType="VARCHAR" />
     <result column="CUST_ID" property="custId" jdbcType="VARCHAR" />
     <result column="CERT_FILE_TYPE" property="certFileType" jdbcType="VARCHAR" />
     <result column="CERT_UPDATE_TIME" property="certUpdateTime" jdbcType="TIMESTAMP" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.zlebank.model.CustCert" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.nbl.model.CustCert" extends="BaseResultMap" >
     <result column="CERT_FILE" property="certFile" jdbcType="LONGVARBINARY" />
   </resultMap>
   <sql id="Base_Column_List" >
@@ -29,7 +29,7 @@
     delete from T_CUST_CERT
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.zlebank.model.CustCert" >
+  <insert id="insert" parameterType="com.nbl.model.CustCert" >
     insert into T_CUST_CERT (ID, CREDENTIALS_TYPE, CUST_ID, 
       CERT_FILE_TYPE, CERT_UPDATE_TIME, CERT_FILE
       )
@@ -37,7 +37,7 @@
       #{certFileType,jdbcType=VARCHAR}, #{certUpdateTime,jdbcType=TIMESTAMP}, #{certFile,jdbcType=LONGVARBINARY}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zlebank.model.CustCert" >
+  <insert id="insertSelective" parameterType="com.nbl.model.CustCert" >
     insert into T_CUST_CERT
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -80,7 +80,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.CustCert" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.nbl.model.CustCert" >
     update T_CUST_CERT
     <set >
       <if test="credentialsType != null" >
@@ -101,7 +101,7 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zlebank.model.CustCert" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.nbl.model.CustCert" >
     update T_CUST_CERT
     set CREDENTIALS_TYPE = #{credentialsType,jdbcType=VARCHAR},
       CUST_ID = #{custId,jdbcType=VARCHAR},
@@ -110,7 +110,7 @@
       CERT_FILE = #{certFile,jdbcType=LONGVARBINARY}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.CustCert" >
+  <update id="updateByPrimaryKey" parameterType="com.nbl.model.CustCert" >
     update T_CUST_CERT
     set CREDENTIALS_TYPE = #{credentialsType,jdbcType=VARCHAR},
       CUST_ID = #{custId,jdbcType=VARCHAR},

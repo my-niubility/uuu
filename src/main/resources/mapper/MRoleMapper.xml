@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zlebank.dao.MRoleDao" >
-  <resultMap id="BaseResultMap" type="com.zlebank.model.MRole" >
+<mapper namespace="com.nbl.dao.MRoleDao" >
+  <resultMap id="BaseResultMap" type="com.nbl.model.MRole" >
     <id column="ROLE_ID" property="roleId" jdbcType="VARCHAR" />
     <result column="ROLE_NAME" property="roleName" jdbcType="VARCHAR" />
     <result column="STATUS" property="status" jdbcType="VARCHAR" />
@@ -52,7 +52,7 @@
   </select>
 
 
-  <insert id="insert" parameterType="com.zlebank.model.MRole" >
+  <insert id="insert" parameterType="com.nbl.model.MRole" >
     insert into T_M_ROLE (ROLE_ID, ROLE_NAME, STATUS, 
       CREATER, DESCRIPTION, CREATED_TIME
       )
@@ -60,7 +60,7 @@
       #{creater,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zlebank.model.MRole" >
+  <insert id="insertSelective" parameterType="com.nbl.model.MRole" >
     insert into T_M_ROLE
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="roleId != null" >
@@ -103,7 +103,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.MRole" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.nbl.model.MRole" >
     update T_M_ROLE
     <set >
       <if test="roleName != null" >
@@ -124,7 +124,7 @@
     </set>
     where ROLE_ID = #{roleId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.MRole" >
+  <update id="updateByPrimaryKey" parameterType="com.nbl.model.MRole" >
     update T_M_ROLE
     set ROLE_NAME = #{roleName,jdbcType=VARCHAR},
       STATUS = #{status,jdbcType=VARCHAR},

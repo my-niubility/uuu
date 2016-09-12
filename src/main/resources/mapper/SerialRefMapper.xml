@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zlebank.dao.SerialRefDao" >
-  <resultMap id="BaseResultMap" type="com.zlebank.model.SerialRef" >
+<mapper namespace="com.nbl.dao.SerialRefDao" >
+  <resultMap id="BaseResultMap" type="com.nbl.model.SerialRef" >
     <id column="SERIAL_ID" property="serialId" jdbcType="VARCHAR" />
     <result column="REF_ID" property="refId" jdbcType="VARCHAR" />
     <result column="REC_FLAG" property="recFlag" jdbcType="CHAR" />
@@ -25,7 +25,7 @@
     delete from T_SERIAL_REF
     where SERIAL_ID = #{serialId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.zlebank.model.SerialRef" >
+  <insert id="insert" parameterType="com.nbl.model.SerialRef" >
     insert into T_SERIAL_REF (SERIAL_ID, REF_ID, REC_FLAG, 
       CREATE_TIME, UPDATE_TIME, RETURN_CODE, 
       RETURN_MESSAGE, REMARK)
@@ -33,7 +33,7 @@
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{returnCode,jdbcType=VARCHAR}, 
       #{returnMessage,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.zlebank.model.SerialRef" >
+  <insert id="insertSelective" parameterType="com.nbl.model.SerialRef" >
     insert into T_SERIAL_REF
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="serialId != null" >
@@ -88,7 +88,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.SerialRef" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.nbl.model.SerialRef" >
     update T_SERIAL_REF
     <set >
       <if test="refId != null" >
@@ -115,7 +115,7 @@
     </set>
     where SERIAL_ID = #{serialId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.SerialRef" >
+  <update id="updateByPrimaryKey" parameterType="com.nbl.model.SerialRef" >
     update T_SERIAL_REF
     set REF_ID = #{refId,jdbcType=VARCHAR},
       REC_FLAG = #{recFlag,jdbcType=CHAR},

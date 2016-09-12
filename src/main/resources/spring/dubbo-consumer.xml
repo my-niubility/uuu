@@ -12,21 +12,21 @@
 	default-lazy-init="false">
 
 	<dubbo:reference id="demoServiceRemote"
-		interface="com.zlebank.service.DubboProducerInterface" version="1.0" />
+		interface="com.nbl.service.DubboProducerInterface" version="1.0" />
 
 	<dubbo:reference id="generalParameterApp"
-		interface="com.zlebank.service.manager.app.GeneralParameterApp" group="group01"
+		interface="com.nbl.service.manager.app.GeneralParameterApp" group="group01"
 		version="1.0" />
 	<dubbo:reference id="disableTradeOrderApp"
-		interface="com.zlebank.service.business.app.DisableTradeOrderApp"
+		interface="com.nbl.service.business.app.DisableTradeOrderApp"
 		group="group01" version="1.0" />
 
 	<dubbo:reference id="trdOrdQryApp"
-		interface="com.zlebank.service.business.app.TrdOrdQryApp" group="group01"
+		interface="com.nbl.service.business.app.TrdOrdQryApp" group="group01"
 		version="1.0" />
 
 	<dubbo:reference id="userMessageApp"
-		interface="com.zlebank.service.business.app.UserMessageApp" group="group01"
+		interface="com.nbl.service.business.app.UserMessageApp" group="group01"
 		version="1.0" />
 
 </beans>

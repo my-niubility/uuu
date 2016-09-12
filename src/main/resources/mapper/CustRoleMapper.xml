@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zlebank.dao.CustRoleDao" >
-  <resultMap id="BaseResultMap" type="com.zlebank.model.CustRole" >
+<mapper namespace="com.nbl.dao.CustRoleDao" >
+  <resultMap id="BaseResultMap" type="com.nbl.model.CustRole" >
     <id column="ID" property="id" jdbcType="VARCHAR" />
     <result column="NAME" property="name" jdbcType="VARCHAR" />
     <result column="STATUS" property="status" jdbcType="VARCHAR" />
@@ -21,13 +21,13 @@
     delete from T_CUST_ROLE
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.zlebank.model.CustRole" >
+  <insert id="insert" parameterType="com.nbl.model.CustRole" >
     insert into T_CUST_ROLE (ID, NAME, STATUS, 
       CREATED_TIME, DESCRIPTION)
     values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
       #{createdTime,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.zlebank.model.CustRole" >
+  <insert id="insertSelective" parameterType="com.nbl.model.CustRole" >
     insert into T_CUST_ROLE
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -64,7 +64,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.CustRole" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.nbl.model.CustRole" >
     update T_CUST_ROLE
     <set >
       <if test="name != null" >
@@ -82,7 +82,7 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.CustRole" >
+  <update id="updateByPrimaryKey" parameterType="com.nbl.model.CustRole" >
     update T_CUST_ROLE
     set NAME = #{name,jdbcType=VARCHAR},
       STATUS = #{status,jdbcType=VARCHAR},

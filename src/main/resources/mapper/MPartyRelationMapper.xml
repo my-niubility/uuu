@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zlebank.dao.MPartyRelationDao" >
-  <resultMap id="BaseResultMap" type="com.zlebank.model.MPartyRelation" >
+<mapper namespace="com.nbl.dao.MPartyRelationDao" >
+  <resultMap id="BaseResultMap" type="com.nbl.model.MPartyRelation" >
     <id column="ID" property="id" jdbcType="VARCHAR" />
     <result column="TYPE" property="type" jdbcType="VARCHAR" />
     <result column="FROM_PARTY_ROLE_ID" property="fromPartyRoleId" jdbcType="VARCHAR" />
@@ -23,7 +23,7 @@
     delete from T_M_PARTY_RELATIONSHIP
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.zlebank.model.MPartyRelation" >
+  <insert id="insert" parameterType="com.nbl.model.MPartyRelation" >
     insert into T_M_PARTY_RELATIONSHIP (ID, TYPE, FROM_PARTY_ROLE_ID, 
       TO_PARTY_ROLE_ID, CREATED_TIME, PERIOD_START, 
       PERIOD_END)
@@ -31,7 +31,7 @@
       #{toPartyRoleId,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{periodStart,jdbcType=TIMESTAMP}, 
       #{periodEnd,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.zlebank.model.MPartyRelation" >
+  <insert id="insertSelective" parameterType="com.nbl.model.MPartyRelation" >
     insert into T_M_PARTY_RELATIONSHIP
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -80,7 +80,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.MPartyRelation" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.nbl.model.MPartyRelation" >
     update T_M_PARTY_RELATIONSHIP
     <set >
       <if test="type != null" >
@@ -104,7 +104,7 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.MPartyRelation" >
+  <update id="updateByPrimaryKey" parameterType="com.nbl.model.MPartyRelation" >
     update T_M_PARTY_RELATIONSHIP
     set TYPE = #{type,jdbcType=VARCHAR},
       FROM_PARTY_ROLE_ID = #{fromPartyRoleId,jdbcType=VARCHAR},

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zlebank.dao.BankTypeDao" >
-  <resultMap id="BaseResultMap" type="com.zlebank.model.BankType" >
+<mapper namespace="com.nbl.dao.BankTypeDao" >
+  <resultMap id="BaseResultMap" type="com.nbl.model.BankType" >
     <id column="BANK_TYPE" property="bankType" jdbcType="VARCHAR" />
     <result column="BANK_NAME" property="bankName" jdbcType="VARCHAR" />
   </resultMap>
@@ -18,11 +18,11 @@
     delete from T_BANK_TYPE
     where BANK_TYPE = #{bankType,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.zlebank.model.BankType" >
+  <insert id="insert" parameterType="com.nbl.model.BankType" >
     insert into T_BANK_TYPE (BANK_TYPE, BANK_NAME)
     values (#{bankType,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.zlebank.model.BankType" >
+  <insert id="insertSelective" parameterType="com.nbl.model.BankType" >
     insert into T_BANK_TYPE
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="bankType != null" >
@@ -41,7 +41,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.BankType" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.nbl.model.BankType" >
     update T_BANK_TYPE
     <set >
       <if test="bankName != null" >
@@ -50,7 +50,7 @@
     </set>
     where BANK_TYPE = #{bankType,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.BankType" >
+  <update id="updateByPrimaryKey" parameterType="com.nbl.model.BankType" >
     update T_BANK_TYPE
     set BANK_NAME = #{bankName,jdbcType=VARCHAR}
     where BANK_TYPE = #{bankType,jdbcType=VARCHAR}

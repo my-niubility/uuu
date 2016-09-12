@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zlebank.dao.CustEnterpriseChangeDao" >
-  <resultMap id="BaseResultMap" type="com.zlebank.model.CustEnterpriseChange" >
+<mapper namespace="com.nbl.dao.CustEnterpriseChangeDao" >
+  <resultMap id="BaseResultMap" type="com.nbl.model.CustEnterpriseChange" >
     <id column="ID" property="id" jdbcType="VARCHAR" />
     <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
     <result column="TYPE" property="type" jdbcType="VARCHAR" />
@@ -10,7 +10,7 @@
     <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
     <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.zlebank.model.CustEnterpriseChangeWithBLOBs" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.nbl.model.CustEnterpriseChangeWithBLOBs" extends="BaseResultMap" >
     <result column="ORIGINAL_OBJECT" property="originalObject" jdbcType="LONGVARBINARY" />
     <result column="NEW_OBJECT" property="newObject" jdbcType="LONGVARBINARY" />
   </resultMap>
@@ -32,7 +32,7 @@
     delete from T_CUST_ENTERPRISE_CHANGE
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.zlebank.model.CustEnterpriseChangeWithBLOBs" >
+  <insert id="insert" parameterType="com.nbl.model.CustEnterpriseChangeWithBLOBs" >
     insert into T_CUST_ENTERPRISE_CHANGE (ID, USER_ID, TYPE, 
       STATUS, ENTERPRISE_ID, DESCRIPTION, 
       CREATED_TIME, ORIGINAL_OBJECT, NEW_OBJECT
@@ -42,7 +42,7 @@
       #{createdTime,jdbcType=TIMESTAMP}, #{originalObject,jdbcType=LONGVARBINARY}, #{newObject,jdbcType=LONGVARBINARY}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zlebank.model.CustEnterpriseChangeWithBLOBs" >
+  <insert id="insertSelective" parameterType="com.nbl.model.CustEnterpriseChangeWithBLOBs" >
     insert into T_CUST_ENTERPRISE_CHANGE
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -103,7 +103,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.CustEnterpriseChangeWithBLOBs" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.nbl.model.CustEnterpriseChangeWithBLOBs" >
     update T_CUST_ENTERPRISE_CHANGE
     <set >
       <if test="userId != null" >
@@ -133,7 +133,7 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zlebank.model.CustEnterpriseChangeWithBLOBs" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.nbl.model.CustEnterpriseChangeWithBLOBs" >
     update T_CUST_ENTERPRISE_CHANGE
     set USER_ID = #{userId,jdbcType=VARCHAR},
       TYPE = #{type,jdbcType=VARCHAR},
@@ -145,7 +145,7 @@
       NEW_OBJECT = #{newObject,jdbcType=LONGVARBINARY}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.CustEnterpriseChange" >
+  <update id="updateByPrimaryKey" parameterType="com.nbl.model.CustEnterpriseChange" >
     update T_CUST_ENTERPRISE_CHANGE
     set USER_ID = #{userId,jdbcType=VARCHAR},
       TYPE = #{type,jdbcType=VARCHAR},

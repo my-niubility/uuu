@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zlebank.dao.CustEnterpriseDao" >
-  <resultMap id="BaseResultMap" type="com.zlebank.model.CustEnterprise" >
+<mapper namespace="com.nbl.dao.CustEnterpriseDao" >
+  <resultMap id="BaseResultMap" type="com.nbl.model.CustEnterprise" >
     <id column="ID" property="id" jdbcType="VARCHAR" />
     <result column="NAME" property="name" jdbcType="VARCHAR" />
     <result column="CREDENTIALS_TYPE" property="credentialsType" jdbcType="VARCHAR" />
@@ -51,7 +51,7 @@
     delete from T_CUST_ENTERPRISE
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.zlebank.model.CustEnterprise" >
+  <insert id="insert" parameterType="com.nbl.model.CustEnterprise" >
     insert into T_CUST_ENTERPRISE (ID, NAME, CREDENTIALS_TYPE, 
       PHONE, FAX, ADDRESS, 
       SUMMARY, COMPANY_IMG, ORGANIZTION_IMG, 
@@ -71,7 +71,7 @@
       #{agentMobile,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{createdDate,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zlebank.model.CustEnterprise" >
+  <insert id="insertSelective" parameterType="com.nbl.model.CustEnterprise" >
     insert into T_CUST_ENTERPRISE
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -222,7 +222,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.CustEnterprise" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.nbl.model.CustEnterprise" >
     update T_CUST_ENTERPRISE
     <set >
       <if test="name != null" >
@@ -297,7 +297,7 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.CustEnterprise" >
+  <update id="updateByPrimaryKey" parameterType="com.nbl.model.CustEnterprise" >
     update T_CUST_ENTERPRISE
     set NAME = #{name,jdbcType=VARCHAR},
       CREDENTIALS_TYPE = #{credentialsType,jdbcType=VARCHAR},

@@ -11,100 +11,100 @@
     http://code.alibabatech.com/schema/dubbo/dubbo.xsd"
 	default-lazy-init="false">
 
-	<dubbo:service interface="com.zlebank.service.DubboConsumerInterface"
+	<dubbo:service interface="com.nbl.service.DubboConsumerInterface"
 		ref="portalInterfaceImpl" group="group01" version="1.0" provider="user_4_all">
 		<dubbo:method name="getName" timeout="5000" />
 	</dubbo:service>
 
-	<dubbo:service interface="com.zlebank.service.user.app.RegisteUserApp"
+	<dubbo:service interface="com.nbl.service.user.app.RegisteUserApp"
 		ref="registeUserApp" group="group01" version="1.0" provider="user_4_all">
 	</dubbo:service>
 
-	<dubbo:service interface="com.zlebank.service.user.app.RechargeChkApp"
+	<dubbo:service interface="com.nbl.service.user.app.RechargeChkApp"
 		ref="rechargeChkApp" group="group01" version="1.0" provider="user_4_all">
 	</dubbo:service>
 
-	<dubbo:service interface="com.zlebank.service.user.app.CertificationApp"
+	<dubbo:service interface="com.nbl.service.user.app.CertificationApp"
 		ref="certificationApp" group="group01" version="1.0" provider="user_4_all">
 	</dubbo:service>
 
-	<dubbo:service interface="com.zlebank.service.user.app.BindBankCardApp"
+	<dubbo:service interface="com.nbl.service.user.app.BindBankCardApp"
 		ref="bindBankCardApp" group="group01" version="1.0" provider="user_4_all">
 	</dubbo:service>
 
-	<dubbo:service interface="com.zlebank.service.user.app.ChkWthdwApp"
+	<dubbo:service interface="com.nbl.service.user.app.ChkWthdwApp"
 		ref="chkWthdwApp" group="group01" version="1.0" provider="user_4_all">
 	</dubbo:service>
 
-	<dubbo:service interface="com.zlebank.service.user.app.PwdManageApp"
+	<dubbo:service interface="com.nbl.service.user.app.PwdManageApp"
 		ref="pwdManageApp" group="group01" version="1.0" provider="user_4_all">
 	</dubbo:service>
 
-	<dubbo:service interface="com.zlebank.service.user.app.CustAccountApp"
+	<dubbo:service interface="com.nbl.service.user.app.CustAccountApp"
 		ref="custAccountApp" group="group01" version="1.0" provider="user_4_all">
 	</dubbo:service>
 
-	<dubbo:service interface="com.zlebank.service.user.app.UserInfoQueryApp"
+	<dubbo:service interface="com.nbl.service.user.app.UserInfoQueryApp"
 		ref="userInfoQueryApp" group="group01" version="1.0" provider="user_4_all">
 	</dubbo:service>
 
-	<dubbo:service interface="com.zlebank.service.manager.app.ManagerShiroApp"
+	<dubbo:service interface="com.nbl.service.manager.app.ManagerShiroApp"
 		ref="managerShiroApp" group="group01" version="1.0" provider="user_4_all">
 	</dubbo:service>
 
-	<dubbo:service interface="com.zlebank.service.manager.app.LoginAccountApp"
+	<dubbo:service interface="com.nbl.service.manager.app.LoginAccountApp"
 		ref="loginAccountApp" group="group01" version="1.0" provider="user_4_all">
 	</dubbo:service>
 
-	<dubbo:service interface="com.zlebank.service.manager.app.RoleResourcePermApp"
+	<dubbo:service interface="com.nbl.service.manager.app.RoleResourcePermApp"
 		ref="roleResourcePermApp" group="group01" version="1.0" provider="user_4_all">
 	</dubbo:service>
 
-	<dubbo:service interface="com.zlebank.service.user.app.BnkCrdInfoQryApp"
+	<dubbo:service interface="com.nbl.service.user.app.BnkCrdInfoQryApp"
 		ref="bnkCrdInfoQryApp" group="group01" version="1.0" provider="user_4_all">
 	</dubbo:service>
 
-	<dubbo:service interface="com.zlebank.service.user.app.PaymentProxyApp"
+	<dubbo:service interface="com.nbl.service.user.app.PaymentProxyApp"
 		ref="paymentProxyApp" group="group01" version="1.0" provider="user_4_all">
 	</dubbo:service>
 
-	<dubbo:service interface="com.zlebank.service.user.app.RechargeProxyApp"
+	<dubbo:service interface="com.nbl.service.user.app.RechargeProxyApp"
 		ref="rechargeProxyApp" group="group01" version="1.0" provider="user_4_all">
 	</dubbo:service>
 
-	<dubbo:service interface="com.zlebank.service.user.app.WithdrawProxyApp"
+	<dubbo:service interface="com.nbl.service.user.app.WithdrawProxyApp"
 		ref="withdrawProxyApp" group="group01" version="1.0" provider="user_4_all">
 	</dubbo:service>
 
-	<dubbo:service interface="com.zlebank.service.user.app.SerialRefProxyApp"
+	<dubbo:service interface="com.nbl.service.user.app.SerialRefProxyApp"
 		ref="serialRefProxyApp" group="group01" version="1.0" provider="user_4_all">
 	</dubbo:service>
 	
-	<dubbo:service interface="com.zlebank.service.manager.app.CustPersonApp"
+	<dubbo:service interface="com.nbl.service.manager.app.CustPersonApp"
 		ref="custPersonApp" group="group01" version="1.0" provider="user_4_all">
 	</dubbo:service>
 	
-	<dubbo:service interface="com.zlebank.service.manager.app.CustBankApp"
+	<dubbo:service interface="com.nbl.service.manager.app.CustBankApp"
 		ref="custBankApp" group="group01" version="1.0" provider="user_4_all">
 	</dubbo:service>
 	
-	<dubbo:service interface="com.zlebank.service.manager.app.QuartzServiceApp"
+	<dubbo:service interface="com.nbl.service.manager.app.QuartzServiceApp"
 		ref="quartzServiceApp" group="group01" version="1.0" provider="user_4_all">
 	</dubbo:service>
 	
-	<dubbo:service interface="com.zlebank.service.manager.app.CustEnterpriseApp"
+	<dubbo:service interface="com.nbl.service.manager.app.CustEnterpriseApp"
 		ref="custEnterpriseApp" group="group01" version="1.0" provider="user_4_all">
 	</dubbo:service>
 	
-	<dubbo:service interface="com.zlebank.service.manager.app.BankTypeApp"
+	<dubbo:service interface="com.nbl.service.manager.app.BankTypeApp"
 		ref="bankTypeApp" group="group01" version="1.0" provider="user_4_all">
 	</dubbo:service> 
 	
-	<dubbo:service interface="com.zlebank.service.manager.app.FundsLimitBankApp"
+	<dubbo:service interface="com.nbl.service.manager.app.FundsLimitBankApp"
 		ref="fundsLimitBankApp" group="group01" version="1.0" provider="user_4_all">
 	</dubbo:service>
 	
-	<dubbo:service interface="com.zlebank.service.manager.app.CustUserApp"
+	<dubbo:service interface="com.nbl.service.manager.app.CustUserApp"
 		ref="custUserApp" group="group01" version="1.0" provider="user_4_all">
 	</dubbo:service>
 </beans>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zlebank.dao.MRoleChangeDao" >
-  <resultMap id="BaseResultMap" type="com.zlebank.model.MRoleChange" >
+<mapper namespace="com.nbl.dao.MRoleChangeDao" >
+  <resultMap id="BaseResultMap" type="com.nbl.model.MRoleChange" >
     <id column="ID" property="id" jdbcType="VARCHAR" />
     <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
     <result column="TYPE" property="type" jdbcType="VARCHAR" />
@@ -10,7 +10,7 @@
     <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
     <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.zlebank.model.MRoleChangeWithBLOBs" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.nbl.model.MRoleChangeWithBLOBs" extends="BaseResultMap" >
     <result column="ORIGINAL_OBJECT" property="originalObject" jdbcType="LONGVARBINARY" />
     <result column="NEW_OBJECT" property="newObject" jdbcType="LONGVARBINARY" />
   </resultMap>
@@ -32,7 +32,7 @@
     delete from T_M_ROLE_CHANGE
     where ID = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.zlebank.model.MRoleChangeWithBLOBs" >
+  <insert id="insert" parameterType="com.nbl.model.MRoleChangeWithBLOBs" >
     insert into T_M_ROLE_CHANGE (ID, USER_ID, TYPE, 
       STATUS, ROLE_ID, CREATED_TIME, 
       DESCRIPTION, ORIGINAL_OBJECT, NEW_OBJECT
@@ -42,7 +42,7 @@
       #{description,jdbcType=VARCHAR}, #{originalObject,jdbcType=LONGVARBINARY}, #{newObject,jdbcType=LONGVARBINARY}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zlebank.model.MRoleChangeWithBLOBs" >
+  <insert id="insertSelective" parameterType="com.nbl.model.MRoleChangeWithBLOBs" >
     insert into T_M_ROLE_CHANGE
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -103,7 +103,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.MRoleChangeWithBLOBs" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.nbl.model.MRoleChangeWithBLOBs" >
     update T_M_ROLE_CHANGE
     <set >
       <if test="userId != null" >
@@ -133,7 +133,7 @@
     </set>
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zlebank.model.MRoleChangeWithBLOBs" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.nbl.model.MRoleChangeWithBLOBs" >
     update T_M_ROLE_CHANGE
     set USER_ID = #{userId,jdbcType=VARCHAR},
       TYPE = #{type,jdbcType=VARCHAR},
@@ -145,7 +145,7 @@
       NEW_OBJECT = #{newObject,jdbcType=LONGVARBINARY}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.MRoleChange" >
+  <update id="updateByPrimaryKey" parameterType="com.nbl.model.MRoleChange" >
     update T_M_ROLE_CHANGE
     set USER_ID = #{userId,jdbcType=VARCHAR},
       TYPE = #{type,jdbcType=VARCHAR},

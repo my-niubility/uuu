@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zlebank.dao.CuCbSequenceDao" >
-  <resultMap id="BaseResultMap" type="com.zlebank.model.CuCbSequenceKey" >
+<mapper namespace="com.nbl.dao.CuCbSequenceDao" >
+  <resultMap id="BaseResultMap" type="com.nbl.model.CuCbSequenceKey" >
     <id column="ID" property="id" jdbcType="INTEGER" />
     <id column="CURDATE" property="curdate" jdbcType="CHAR" />
   </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="com.zlebank.model.CuCbSequenceKey" >
+  <delete id="deleteByPrimaryKey" parameterType="com.nbl.model.CuCbSequenceKey" >
     delete from CU_CB_SEQUENCE
     where ID = #{id,jdbcType=INTEGER}
       and CURDATE = #{curdate,jdbcType=CHAR}
   </delete>
-  <insert id="insert" parameterType="com.zlebank.model.CuCbSequenceKey" >
+  <insert id="insert" parameterType="com.nbl.model.CuCbSequenceKey" >
     insert into CU_CB_SEQUENCE (ID, CURDATE)
     values (#{id,jdbcType=INTEGER}, #{curdate,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.zlebank.model.CuCbSequenceKey" >
+  <insert id="insertSelective" parameterType="com.nbl.model.CuCbSequenceKey" >
     insert into CU_CB_SEQUENCE
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

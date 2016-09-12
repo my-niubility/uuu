@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zlebank.dao.CustBankCardDao">
-	<resultMap id="BaseResultMap" type="com.zlebank.model.CustBankCard">
+<mapper namespace="com.nbl.dao.CustBankCardDao">
+	<resultMap id="BaseResultMap" type="com.nbl.model.CustBankCard">
 		<id column="ID" property="id" jdbcType="VARCHAR" />
 		<result column="CUST_ID" property="custId" jdbcType="VARCHAR" />
 		<result column="CARD_NAME" property="cardName" jdbcType="VARCHAR" />
@@ -66,7 +66,7 @@
 		T_CUST_BANK_CARD
 		where ID = #{id,jdbcType=VARCHAR}
 	</delete>
-	<insert id="insert" parameterType="com.zlebank.model.CustBankCard">
+	<insert id="insert" parameterType="com.nbl.model.CustBankCard">
 		insert into T_CUST_BANK_CARD
 		(ID, CUST_ID, CARD_NAME,
 		CARD_NO, CARD_TYPE, BANK_TYPE,
@@ -95,7 +95,7 @@
 		#{createType,jdbcType=CHAR},
 		#{isDefault,jdbcType=CHAR})
 	</insert>
-	<insert id="insertSelective" parameterType="com.zlebank.model.CustBankCard">
+	<insert id="insertSelective" parameterType="com.nbl.model.CustBankCard">
 		insert into T_CUST_BANK_CARD
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -222,7 +222,7 @@
 			</if>
 		</trim>
 	</insert>
-	<update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.CustBankCard">
+	<update id="updateByPrimaryKeySelective" parameterType="com.nbl.model.CustBankCard">
 		update T_CUST_BANK_CARD
 		<set>
 			<if test="custId != null">
@@ -286,7 +286,7 @@
 		</set>
 		where ID = #{id,jdbcType=VARCHAR}
 	</update>
-	<update id="updateByPrimaryKey" parameterType="com.zlebank.model.CustBankCard">
+	<update id="updateByPrimaryKey" parameterType="com.nbl.model.CustBankCard">
 		update
 		T_CUST_BANK_CARD
 		set CUST_ID = #{custId,jdbcType=VARCHAR},

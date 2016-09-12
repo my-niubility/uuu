@@ -15,7 +15,7 @@
 	<!-- job1 -->
 	<bean id="quartzOne"
 		class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
-		<property name="jobClass" value="com.zlebank.schedule.MyTestScheduleJob"></property>
+		<property name="jobClass" value="com.nbl.schedule.MyTestScheduleJob"></property>
 		<property name="name" value="job1"></property>
 		<property name="group" value="jGroup1"></property>
 		<property name="durability" value="true" />
@@ -31,7 +31,7 @@
 	<!-- 订单自动取消-->
 	<bean id="cancelOrder"
 		class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
-		<property name="jobClass" value="com.zlebank.schedule.MyTestScheduleJob"></property>
+		<property name="jobClass" value="com.nbl.schedule.MyTestScheduleJob"></property>
 		<property name="name" value="job2"></property>
 		<property name="group" value="jGroup1"></property>
 		<property name="durability" value="true" />
@@ -46,7 +46,7 @@
 	<!-- 重置登录错误超限账号-->
 	<bean id="resLoginAcc"
 		class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
-		<property name="jobClass" value="com.zlebank.schedule.MyTestScheduleJob"></property>
+		<property name="jobClass" value="com.nbl.schedule.MyTestScheduleJob"></property>
 		<property name="name" value="job3"></property>
 		<property name="group" value="jGroup1"></property>
 		<property name="durability" value="true" />

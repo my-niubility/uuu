@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zlebank.dao.CuPkSequenceDao">
-	<resultMap id="BaseResultMap" type="com.zlebank.model.CuPkSequenceKey">
+<mapper namespace="com.nbl.dao.CuPkSequenceDao">
+	<resultMap id="BaseResultMap" type="com.nbl.model.CuPkSequenceKey">
 		<id column="ID" property="id" jdbcType="INTEGER" />
 		<id column="CURDATE" property="curdate" jdbcType="CHAR" />
 	</resultMap>
-	<delete id="deleteByPrimaryKey" parameterType="com.zlebank.model.CuPkSequenceKey">
+	<delete id="deleteByPrimaryKey" parameterType="com.nbl.model.CuPkSequenceKey">
 		delete from
 		cu_pk_sequence
 		where ID = #{id,jdbcType=INTEGER}
 		and CURDATE =
 		#{curdate,jdbcType=CHAR}
 	</delete>
-	<insert id="insert" parameterType="com.zlebank.model.CuPkSequenceKey">
+	<insert id="insert" parameterType="com.nbl.model.CuPkSequenceKey">
 		<selectKey resultType="java.lang.Integer" order="AFTER"
 			keyProperty="id">
 			SELECT LAST_INSERT_ID() AS ID
@@ -21,7 +21,7 @@
 		values
 		(#{id,jdbcType=INTEGER}, #{curdate,jdbcType=CHAR})
 	</insert>
-	<insert id="insertSelective" parameterType="com.zlebank.model.CuPkSequenceKey">
+	<insert id="insertSelective" parameterType="com.nbl.model.CuPkSequenceKey">
 		insert into cu_pk_sequence
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">

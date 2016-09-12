@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zlebank.dao.MRoleResPermDao" >
-  <resultMap id="BaseResultMap" type="com.zlebank.model.MRoleResPerm" >
+<mapper namespace="com.nbl.dao.MRoleResPermDao" >
+  <resultMap id="BaseResultMap" type="com.nbl.model.MRoleResPerm" >
     <id column="ROLE_ID" property="roleId" jdbcType="VARCHAR" />
     <id column="RESOURCES_ID" property="resourcesId" jdbcType="VARCHAR" />
     <id column="PERMISSION_ID" property="permissionId" jdbcType="VARCHAR" />
@@ -12,7 +12,7 @@
   <sql id="Base_Column_List" >
     ROLE_ID, RESOURCES_ID, PERMISSION_ID, PERMISSION_NAME, DESCRIPTION, CREATED_TIME
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.zlebank.model.MRoleResPermKey" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.nbl.model.MRoleResPermKey" >
     select 
     <include refid="Base_Column_List" />
     from T_M_ROLE_RES_PERM
@@ -42,13 +42,13 @@
       	  and PERMISSION_ID = #{permissionId,jdbcType=VARCHAR}
   </update>
   
-  <delete id="deleteByPrimaryKey" parameterType="com.zlebank.model.MRoleResPermKey" >
+  <delete id="deleteByPrimaryKey" parameterType="com.nbl.model.MRoleResPermKey" >
     delete from T_M_ROLE_RES_PERM
     where ROLE_ID = #{roleId,jdbcType=VARCHAR}
       and RESOURCES_ID = #{resourcesId,jdbcType=VARCHAR}
       and PERMISSION_ID = #{permissionId,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.zlebank.model.MRoleResPerm" >
+  <insert id="insert" parameterType="com.nbl.model.MRoleResPerm" >
     insert into T_M_ROLE_RES_PERM (ROLE_ID, RESOURCES_ID, PERMISSION_ID, 
       PERMISSION_NAME, DESCRIPTION, CREATED_TIME
       )
@@ -56,7 +56,7 @@
       #{permissionName,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zlebank.model.MRoleResPerm" >
+  <insert id="insertSelective" parameterType="com.nbl.model.MRoleResPerm" >
     insert into T_M_ROLE_RES_PERM
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="roleId != null" >
@@ -101,7 +101,7 @@
   </insert>
   
   
-  <update id="updateByPrimaryKeySelective" parameterType="com.zlebank.model.MRoleResPerm" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.nbl.model.MRoleResPerm" >
     update T_M_ROLE_RES_PERM
     <set >
       <if test="permissionName != null" >
@@ -118,7 +118,7 @@
       and RESOURCES_ID = #{resourcesId,jdbcType=VARCHAR}
       and PERMISSION_ID = #{permissionId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zlebank.model.MRoleResPerm" >
+  <update id="updateByPrimaryKey" parameterType="com.nbl.model.MRoleResPerm" >
     update T_M_ROLE_RES_PERM
     set PERMISSION_NAME = #{permissionName,jdbcType=VARCHAR},
       DESCRIPTION = #{description,jdbcType=VARCHAR},
